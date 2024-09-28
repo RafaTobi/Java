@@ -7,6 +7,7 @@ import be.kdg.SA.Land.repository.AfspraakRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AfspraakService {
@@ -16,6 +17,9 @@ public class AfspraakService {
         this.afspraakRepository = afspraakRepository;
     }
 
+    public Optional<Afspraak> findByAfspraakId(UUID afspraakId) {
+        return this.afspraakRepository.findByAfspraakId(afspraakId);
+    }
     public Optional maakAfspraak(Leverancier leverancier, Vrachtwagen vrachtwagen,Grondstof grondstof ,AankomstVenster aankomstVenster) {
        try {
             Afspraak afspraak = new Afspraak(leverancier, vrachtwagen,grondstof ,aankomstVenster);
