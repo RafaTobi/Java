@@ -20,6 +20,7 @@ public class AfspraakService {
     public Optional<Afspraak> findByAfspraakId(UUID afspraakId) {
         return this.afspraakRepository.findByAfspraakId(afspraakId);
     }
+
     public Optional maakAfspraak(Leverancier leverancier, Vrachtwagen vrachtwagen,Grondstof grondstof ,AankomstVenster aankomstVenster) {
        try {
             Afspraak afspraak = new Afspraak(leverancier, vrachtwagen,grondstof ,aankomstVenster);
@@ -27,6 +28,5 @@ public class AfspraakService {
         } catch (Exception e) {
             return Optional.empty();
         }
-
     }
 }

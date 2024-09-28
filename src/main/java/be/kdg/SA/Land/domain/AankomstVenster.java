@@ -13,4 +13,12 @@ public class AankomstVenster {
     private UUID vensterId;
     private LocalDateTime aankomstTijd;
     private LocalDateTime vertrekTijd;
+
+    public LocalDateTime getAankomstTijd() {
+        return aankomstTijd;
+    }
+
+    public LocalDateTime getVertrekTijd() {
+        return vertrekTijd;
+    }
 }

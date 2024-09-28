@@ -37,7 +37,7 @@ public class Afspraak {
         return grondstof;
     }
 
-    public AankomstVenster getAankomstTijd() {
+    public AankomstVenster getAankomstVenster() {
         return aankomstVenster;
     }
 }
