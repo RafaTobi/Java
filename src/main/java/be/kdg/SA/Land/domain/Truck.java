@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Vrachtwagen {
+public class Truck {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -14,8 +14,8 @@ public class Vrachtwagen {
     private int laadvermogen;
 
 
-    protected Vrachtwagen() {} //voor jpa
-    public Vrachtwagen(String nummerplaat, int laadvermogen) {
+    protected Truck() {} //voor jpa
+    public Truck(String nummerplaat, int laadvermogen) {
         this.nummerplaat = nummerplaat;
         this.laadvermogen = laadvermogen;
     }
@@ -38,7 +38,7 @@ public class Vrachtwagen {
 
     @Override
     public String toString() {
-        return "Vrachtwagen{" +
+        return "Truck{" +
                 "nummerplaat='" + nummerplaat + '\'' +
                 ", laadvermogen=" + laadvermogen +
                 '}';

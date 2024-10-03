@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Grondstof {
+public class Rescource {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID GrondstofId;
@@ -13,8 +13,8 @@ public class Grondstof {
     private int OpslagPrijs;
     private int ProductPrijs;
 
-    protected Grondstof() {} //voor jpa
-    public Grondstof(UUID GrondstofId, String Beschrijving, int OpslagPrijs, int ProductPrijs) {
+    protected Rescource() {} //voor jpa
+    public Rescource(UUID GrondstofId, String Beschrijving, int OpslagPrijs, int ProductPrijs) {
         this.GrondstofId = GrondstofId;
         this.Beschrijving = Beschrijving;
         this.OpslagPrijs = OpslagPrijs;

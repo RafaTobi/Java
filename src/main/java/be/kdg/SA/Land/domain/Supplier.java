@@ -3,15 +3,16 @@ package be.kdg.SA.Land.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class Leverancier {
+public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String naam;
     private String adres;
     private String telefoonnummer;
 
-    protected Leverancier() {} //voor jpa
-    public Leverancier(String naam, String adres, String telefoonnummer) {
+    protected Supplier() {} //voor jpa
+    public Supplier(String naam, String adres, String telefoonnummer) {
         this.naam = naam;
         this.adres = adres;
         this.telefoonnummer = telefoonnummer;
@@ -43,7 +44,7 @@ public class Leverancier {
 
     @Override
     public String toString() {
-        return "Leverancier{" +
+        return "Supplier{" +
                 "naam='" + naam + '\'' +
                 ", adres='" + adres + '\'' +
                 ", telefoonnummer='" + telefoonnummer + '\'' +
