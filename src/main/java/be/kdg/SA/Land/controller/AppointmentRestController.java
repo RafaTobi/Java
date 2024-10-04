@@ -17,9 +17,9 @@ public class AppointmentRestController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping("/afspraak")
+    @GetMapping("/Appointment")
     ResponseEntity<Appointment> findByAfspraakId(@RequestParam UUID afspraakId) {
-        return this.appointmentService.findByAfspraakId(afspraakId)
+        return this.appointmentService.findByAppointmentId(afspraakId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
 

@@ -10,22 +10,22 @@ public class Truck {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column(unique = true)
-    private String nummerplaat;
+    private String licenseplate;
     private int laadvermogen;
 
 
     protected Truck() {} //voor jpa
-    public Truck(String nummerplaat, int laadvermogen) {
-        this.nummerplaat = nummerplaat;
+    public Truck(String licenseplate, int laadvermogen) {
+        this.licenseplate = licenseplate;
         this.laadvermogen = laadvermogen;
     }
 
-    public String getNummerplaat() {
-        return nummerplaat;
+    public String getLicenseplate() {
+        return licenseplate;
     }
 
-    public void setNummerplaat(String nummerplaat) {
-        this.nummerplaat = nummerplaat;
+    public void setLicenseplate(String licenseplate) {
+        this.licenseplate = licenseplate;
     }
 
     public int getLaadvermogen() {
@@ -39,7 +39,7 @@ public class Truck {
     @Override
     public String toString() {
         return "Truck{" +
-                "nummerplaat='" + nummerplaat + '\'' +
+                "nummerplaat='" + licenseplate + '\'' +
                 ", laadvermogen=" + laadvermogen +
                 '}';
     }

@@ -7,7 +7,7 @@ import java.util.UUID;
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-   private UUID afspraakId;
+   private UUID appointmentId;
     @OneToOne
     private Supplier supplier;
     @OneToOne
@@ -26,7 +26,7 @@ public class Appointment {
     }
 
     public UUID getAfspraakId() {
-        return afspraakId;
+        return appointmentId;
     }
 
     public Truck getVrachtwagen() {

@@ -8,6 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, UUID> {
-    Optional<Appointment> findByAppointmentId(UUID afspraakId);
+    Optional<Appointment> findByAppointmentId(UUID appointmentId);
     Optional<List<Appointment>> findAppointmentByTruck(Truck truck);
 }

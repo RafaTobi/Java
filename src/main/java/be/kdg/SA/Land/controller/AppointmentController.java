@@ -9,8 +9,7 @@ public class AppointmentController {
 
     @GetMapping("/appointments")
     public ModelAndView getAppointments() {
-        ModelAndView modelAndView = new ModelAndView("grondstoffen");
-        modelAndView.addObject("grondstofjes", grondstofService.getAllGrondstoffen());
+        ModelAndView modelAndView = new ModelAndView("index");
         return modelAndView;
     }
 
