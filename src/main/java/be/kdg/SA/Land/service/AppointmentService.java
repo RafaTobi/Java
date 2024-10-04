@@ -17,11 +17,11 @@ public class AppointmentService {
         this.appointmentRepository = appointmentRepository;
     }
 
-    public Optional<Appointment> findByAfspraakId(UUID afspraakId) {
-        return this.appointmentRepository.findByAfspraakId(afspraakId);
+    public Optional<Appointment> findByAppointmentId(UUID afspraakId) {
+        return this.appointmentRepository.findByAppointmentId(afspraakId);
     }
 
-    public Optional<Appointment> maakAfspraak(Supplier supplier, Truck truck, Rescource rescource, ArrivalWindow arrivalWindow) {
+    public Optional<Appointment> createAppointment(Supplier supplier, Truck truck, Rescource rescource, ArrivalWindow arrivalWindow) {
        try {
             Appointment appointment = new Appointment(supplier, truck, rescource, arrivalWindow);
             return Optional.of(appointmentRepository.save(appointment));

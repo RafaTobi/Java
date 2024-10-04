@@ -1,28 +1,17 @@
 package be.kdg.SA.Land.controller;
-import be.kdg.SA.Land.domain.Appointment;
-import be.kdg.SA.Land.service.AppointmentService;
-import org.springframework.http.ResponseEntity;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.UUID;
-
-@RestController
-@RequestMapping("/api")
+@Controller
 public class AppointmentController {
-    private final AppointmentService appointmentService;
-    public AppointmentController(AppointmentService appointmentService) {
-        this.appointmentService = appointmentService;
-    }
 
-    @GetMapping("/afspraak")
-    ResponseEntity<Appointment> findByAfspraakId(@RequestParam UUID afspraakId) {
-        return this.appointmentService.findByAfspraakId(afspraakId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-
+    @GetMapping("/appointments")
+    public ModelAndView getAppointments() {
+        ModelAndView modelAndView = new ModelAndView("grondstoffen");
+        modelAndView.addObject("grondstofjes", grondstofService.getAllGrondstoffen());
+        return modelAndView;
     }
 
 }

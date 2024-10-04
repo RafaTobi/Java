@@ -19,16 +19,16 @@ public class GateService {
         this.truckRepository = truckRepository;
     }
 
-    public void openPoort(String nummerplaat){
-        Optional<Truck> vrachtwagen = truckRepository.findVrachtwagenByNummerplaat(nummerplaat);
+    public void openPoort(String licenseplate){
+        Optional<Truck> vrachtwagen = truckRepository.findTruckByLicenseplate(licenseplate);
         if(vrachtwagen.isEmpty()) {
             System.out.println("Truck niet herkend.");
             return;
         }
 
-        Optional<List<Appointment>> afspraken = appointmentRepository.findAfspraakByVrachtwagen(vrachtwagen.get());
+        Optional<List<Appointment>> afspraken = appointmentRepository.findAppointmentByTruck(vrachtwagen.get());
         if (afspraken.isEmpty()) {
-            System.out.println("Er zijn geen afspraken gemaakt voor vrachtwagen met nummerplaat: " + vrachtwagen.get().getNummerplaat());
+            System.out.println("Er zijn geen afspraken gemaakt voor vrachtwagen met licenseplate: " + vrachtwagen.get().getNummerplaat());
             return;
         }
 
@@ -38,7 +38,7 @@ public class GateService {
             ArrivalWindow arrivalWindow = appointment.getAankomstVenster();
             if (now.isAfter(arrivalWindow.getAankomstTijd()) && now.isBefore(arrivalWindow.getVertrekTijd())) {
                 onTime = true;
-                System.out.println("Truck met nummerplaat: " + vrachtwagen.get().getNummerplaat() + " is op tijd. Poort gaat nu open...");
+                System.out.println("Truck met license: " + vrachtwagen.get().getNummerplaat() + " is op tijd. Poort gaat nu open...");
                 break;
             } else {
                 System.out.println("Truck is niet aanwezig tijdens een aankomstvenster.");
