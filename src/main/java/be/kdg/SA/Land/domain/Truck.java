@@ -12,7 +12,8 @@ public class Truck {
     @Column(unique = true)
     private String licenseplate;
     private int laadvermogen;
-
+    @OneToOne
+    private WeighBridgeTicket wbTicket;
 
     protected Truck() {} //voor jpa
     public Truck(String licenseplate, int laadvermogen) {
