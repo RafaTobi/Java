@@ -9,10 +9,13 @@ import be.kdg.SA.Land.repository.TruckRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GateService {
     private final AppointmentRepository appointmentRepository;
     private final TruckRepository truckRepository;
+    private final Logger logger = Logger.getLogger(GateService.class.getName());
 
     public GateService(AppointmentRepository appointmentRepository, TruckRepository truckRepository) {
         this.appointmentRepository = appointmentRepository;
@@ -22,13 +25,13 @@ public class GateService {
     public void openPoort(String licenseplate){
         Optional<Truck> vrachtwagen = truckRepository.findTruckByLicenseplate(licenseplate);
         if(vrachtwagen.isEmpty()) {
-            System.out.println("Truck niet herkend.");
+            logger.log(Level.INFO, "Truck niet herkend.");
             return;
         }
 
         Optional<List<Appointment>> afspraken = appointmentRepository.findAppointmentByTruck(vrachtwagen.get());
         if (afspraken.isEmpty()) {
-            System.out.println("Er zijn geen afspraken gemaakt voor vrachtwagen met licenseplate: " + vrachtwagen.get().getLicenseplate());
+            logger.log(Level.INFO, "Er zijn geen afspraken gemaakt voor vrachtwagen met licenseplate: " + vrachtwagen.get().getLicenseplate());
             return;
         }
 
@@ -38,10 +41,10 @@ public class GateService {
             ArrivalWindow arrivalWindow = appointment.getAankomstVenster();
             if (now.isAfter(arrivalWindow.getAankomstTijd()) && now.isBefore(arrivalWindow.getVertrekTijd())) {
                 onTime = true;
-                System.out.println("Truck met license: " + vrachtwagen.get().getLicenseplate() + " is op tijd. Poort gaat nu open...");
+                logger.log(Level.INFO, "Truck met license: " + vrachtwagen.get().getLicenseplate() + " is op tijd. Poort gaat nu open...");
                 break;
             } else {
-                System.out.println("Truck is niet aanwezig tijdens een aankomstvenster.");
+                logger.log(Level.INFO, "Truck is niet aanwezig tijdens een aankomstvenster.");
             }
         }
     }

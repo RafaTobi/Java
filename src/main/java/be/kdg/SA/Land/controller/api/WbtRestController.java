@@ -5,8 +5,6 @@ import be.kdg.SA.Land.service.WeighBridgeTicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/weighbridgetickets")
 public class WbtRestController {
@@ -16,9 +14,16 @@ public class WbtRestController {
         this.ticketService = ticketService;
     }
 
-    @PostMapping("/arrival/{licencePlate}")
+    @GetMapping("/arrival/{licencePlate}")
     public ResponseEntity<WeighBridgeTicket> recordArrival(@PathVariable String licencePlate) {
         WeighBridgeTicket ticket = ticketService.arrivalWeighIn(licencePlate, 1); //TODO hoe weegbrug bepalen?
+
+        return ResponseEntity.ok(ticket);
+    }
+
+    @GetMapping("/departure/{licencePlate}")
+    public ResponseEntity<WeighBridgeTicket> recordDeparture(@PathVariable String licencePlate) {
+        WeighBridgeTicket ticket = ticketService.departureWeighIn(licencePlate);
 
         return ResponseEntity.ok(ticket);
     }

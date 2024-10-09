@@ -27,11 +27,12 @@ public class WeighBridgeTicketService {
         ticket.setWeighBridgeNumber(weighBridgeNumber);
         ticket.setTruck(truck.get());
         ticket.setArrivalTime(LocalDateTime.now());
+        ticket.setArrivalWeight(truck.get().getLaadvermogen()); //TODO hoe moet dit echt gewogen worden?
 
         return ticket;
     }
 
-    public WeighBridgeTicket departureWeighIn(Truck truck){
+    public WeighBridgeTicket departureWeighIn(String licencePlate){
 
         return null;
     }

@@ -1,0 +1,5 @@
+###
+GET http://localhost:8080/api/weighbridgetickets/arrival/1-ABC-234
+
+###
+GET http://localhost:8081/api/warehouse/2
