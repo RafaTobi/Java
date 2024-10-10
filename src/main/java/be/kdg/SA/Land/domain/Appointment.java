@@ -13,31 +13,35 @@ public class Appointment {
     @OneToOne
    private Truck truck;
     @OneToOne
-   private Rescource rescource;
+   private Resource resource;
     @OneToOne
    private ArrivalWindow arrivalWindow;
 
     protected Appointment() {} //voor jpa
-    public Appointment(Supplier supplier, Truck truck, Rescource rescource, ArrivalWindow arrivalWindow) {
+    public Appointment(Supplier supplier, Truck truck, Resource resource, ArrivalWindow arrivalWindow) {
         this.supplier = supplier;
         this.truck = truck;
-        this.rescource = rescource;
+        this.resource = resource;
         this.arrivalWindow = arrivalWindow;
     }
 
-    public UUID getAfspraakId() {
+    public UUID getAppointmentId() {
         return appointmentId;
     }
 
-    public Truck getVrachtwagen() {
+    public Truck getTruck() {
         return truck;
     }
 
-    public Rescource getGrondstof() {
-        return rescource;
+    public Resource getResource() {
+        return resource;
     }
 
-    public ArrivalWindow getAankomstVenster() {
+    public ArrivalWindow getArrivalWindow() {
         return arrivalWindow;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
     }
 }

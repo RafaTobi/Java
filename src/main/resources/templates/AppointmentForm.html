@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment Form</title>
+</head>
+<body>
+    <form action="#" th:action="@{/appointment}" th:object="${appointment}" method="post">
+        <label for="seller">Seller:</label><br>
+        <input type="text" id="seller" th:field="*{seller}" name="seller"><br>
+        <label for="rawMaterial">Raw Material:</label><br>
+        <input type="text" id="rawMaterial" th:field="*{rawMaterial}" name="rawMaterial"><br>
+        <label for="truckDetails">Truck Details:</label><br>
+        <input type="text" id="truckDetails" th:field="*{truckDetails}" name="truckDetails"><br>
+        <label for="arrivalWindow">Arrival Window:</label><br>
+        <input type="text" id="arrivalWindow" th:field="*{arrivalWindow}" name="arrivalWindow"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -21,9 +21,9 @@ public class AppointmentService {
         return this.appointmentRepository.findByAppointmentId(afspraakId);
     }
 
-    public Optional<Appointment> createAppointment(Supplier supplier, Truck truck, Rescource rescource, ArrivalWindow arrivalWindow) {
+    public Optional<Appointment> createAppointment(Supplier supplier, Truck truck, Resource resource, ArrivalWindow arrivalWindow) {
        try {
-            Appointment appointment = new Appointment(supplier, truck, rescource, arrivalWindow);
+            Appointment appointment = new Appointment(supplier, truck, resource, arrivalWindow);
             return Optional.of(appointmentRepository.save(appointment));
         } catch (Exception e) {
             return Optional.empty();

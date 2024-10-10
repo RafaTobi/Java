@@ -38,7 +38,7 @@ public class GateService {
         LocalDateTime now = LocalDateTime.now();
         boolean onTime = false;
         for (Appointment appointment : afspraken.get()) {
-            ArrivalWindow arrivalWindow = appointment.getAankomstVenster();
+            ArrivalWindow arrivalWindow = appointment.getArrivalWindow();
             if (now.isAfter(arrivalWindow.getAankomstTijd()) && now.isBefore(arrivalWindow.getVertrekTijd())) {
                 onTime = true;
                 logger.log(Level.INFO, "Truck met license: " + vrachtwagen.get().getLicenseplate() + " is op tijd. Poort gaat nu open...");
