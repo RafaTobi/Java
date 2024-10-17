@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Appointment Form</title>
+  <meta charset="UTF-8">
+  <title>Grondstof</title>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+  <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+
 </head>
 <body>
-    <form action="#" th:action="@{/appointment}" th:object="${appointment}" method="post">
-        <label for="seller">Seller:</label><br>
-        <input type="text" id="seller" th:field="*{seller}" name="seller"><br>
-        <label for="rawMaterial">Raw Material:</label><br>
-        <input type="text" id="rawMaterial" th:field="*{rawMaterial}" name="rawMaterial"><br>
-        <label for="truckDetails">Truck Details:</label><br>
-        <input type="text" id="truckDetails" th:field="*{truckDetails}" name="truckDetails"><br>
-        <label for="arrivalWindow">Arrival Window:</label><br>
-        <input type="text" id="arrivalWindow" th:field="*{arrivalWindow}" name="arrivalWindow"><br>
-        <input type="submit" value="Submit">
-    </form>
+<h1>Make your appointment</h1>
+<form action="/add-grondstof" method="POST" th:object="${grondstofje}">
+  <div th:if="${#fields.hasAnyErrors()}">The form contained errors</div>
+  <div>
+    <label for="naam"></label>
+    <input id="naam" type="text" th:field="*{naam}">
+  </div>
+  <div>
+    <label for="opslagPrijs"></label>
+    <input type="number" step=".01" id="opslagPrijs" th:field="*{opslagPrijs}">
+  </div>
+  <div>
+    <label for="verkoopPrijs"></label>
+    <input type="number" step=".01" id="verkoopPrijs" th:field="*{verkoopPrijs}"></div>
+  <button type="submit">Add</button>
+</form>
 </body>
 </html>
