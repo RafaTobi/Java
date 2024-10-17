@@ -10,11 +10,11 @@
 </head>
 <body>
 <h1>Make your appointment</h1>
-<form action="/add-grondstof" method="POST" th:object="${grondstofje}">
+<form action="/add-appointment" method="POST" th:object="${Appointment}">
   <div th:if="${#fields.hasAnyErrors()}">The form contained errors</div>
   <div>
     <label for="naam"></label>
-    <input id="naam" type="text" th:field="*{naam}">
+    <input id="naam" type="text" th:field="*{}">
   </div>
   <div>
     <label for="opslagPrijs"></label>
