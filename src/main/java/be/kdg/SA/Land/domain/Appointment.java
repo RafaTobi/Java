@@ -33,7 +33,7 @@ public class Appointment {
         return truck;
     }
 
-    public Resource getResource() {
+    public Resource getRescource() {
         return resource;
     }
 

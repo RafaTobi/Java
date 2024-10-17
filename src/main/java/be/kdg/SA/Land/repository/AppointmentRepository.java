@@ -9,7 +9,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, UUID> {
+    @Query("" +
+            "SELECT a FROM Appointment a WHERE a.appointmentId = :appointmentId")
     Optional<Appointment> findByAppointmentId(UUID appointmentId);
+    @Query("" +
+            "SELECT a FROM Appointment a WHERE a.truck = :truck")
     Optional<List<Appointment>> findAppointmentByTruck(Truck truck);
 
 }
