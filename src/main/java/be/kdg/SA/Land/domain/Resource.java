@@ -8,32 +8,32 @@ import java.util.UUID;
 public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID GrondstofId;
-    private String Beschrijving;
-    private int OpslagPrijs;
-    private int ProductPrijs;
+    private UUID ResourceId;
+    private String Description;
+    private int StoragePrice;
+    private int ProductPrice;
 
     protected Resource() {} //voor jpa
-    public Resource(UUID GrondstofId, String Beschrijving, int OpslagPrijs, int ProductPrijs) {
-        this.GrondstofId = GrondstofId;
-        this.Beschrijving = Beschrijving;
-        this.OpslagPrijs = OpslagPrijs;
-        this.ProductPrijs = ProductPrijs;
+    public Resource(UUID ResourceId, String Description, int StoragePrice, int ProductPrice) {
+        this.ResourceId = ResourceId;
+        this.Description = Description;
+        this.StoragePrice = StoragePrice;
+        this.ProductPrice = ProductPrice;
     }
 
-    public UUID getGrondstofId() {
-        return GrondstofId;
+    public UUID getResourceId() {
+        return ResourceId;
     }
 
-    public String getBeschrijving() {
-        return Beschrijving;
+    public String getDescription() {
+        return Description;
     }
 
-    public int getOpslagPrijs() {
-        return OpslagPrijs;
+    public int getStoragePrice() {
+        return StoragePrice;
     }
 
-    public int getProductPrijs() {
-        return ProductPrijs;
+    public int getProductPrice() {
+        return ProductPrice;
     }
 }

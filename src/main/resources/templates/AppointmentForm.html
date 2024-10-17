@@ -5,16 +5,21 @@
     <title>Appointment Form</title>
 </head>
 <body>
-    <form action="#" th:action="@{/appointment}" th:object="${appointment}" method="post">
-        <label for="seller">Seller:</label><br>
-        <input type="text" id="seller" th:field="*{seller}" name="seller"><br>
-        <label for="rawMaterial">Raw Material:</label><br>
-        <input type="text" id="rawMaterial" th:field="*{rawMaterial}" name="rawMaterial"><br>
-        <label for="truckDetails">Truck Details:</label><br>
-        <input type="text" id="truckDetails" th:field="*{truckDetails}" name="truckDetails"><br>
-        <label for="arrivalWindow">Arrival Window:</label><br>
-        <input type="text" id="arrivalWindow" th:field="*{arrivalWindow}" name="arrivalWindow"><br>
-        <input type="submit" value="Submit">
-    </form>
+<form action="/add-appointment" method="POST" th:object="${appointment}">
+    <div th:if="${#fields.hasAnyErrors()}">The form contained errors</div>
+    <div>
+        <label for="naam"></label>
+        <input id="naam" type="text" th:field="*{naam}">
+    </div>
+    <div>
+        <label for="opslagPrijs"></label>
+        <input type="number" step=".01" id="opslagPrijs" th:field="*{opslagPrijs}">
+    </div>
+    <div>
+        <label for="verkoopPrijs"></label>
+        <input type="number" step=".01" id="verkoopPrijs" th:field="*{verkoopPrijs}"></div>
+    <button type="submit">Add</button>
+</form>
+
 </body>
 </html>

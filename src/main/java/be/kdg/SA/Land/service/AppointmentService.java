@@ -6,6 +6,7 @@ import be.kdg.SA.Land.domain.*;
 import be.kdg.SA.Land.repository.AppointmentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,13 +21,20 @@ public class AppointmentService {
     public Optional<Appointment> findByAppointmentId(UUID afspraakId) {
         return this.appointmentRepository.findByAppointmentId(afspraakId);
     }
-
-    public Optional<Appointment> createAppointment(Supplier supplier, Truck truck, Resource resource, ArrivalWindow arrivalWindow) {
-       try {
-            Appointment appointment = new Appointment(supplier, truck, resource, arrivalWindow);
+    public Optional<Appointment> createAppointment(Appointment appointment) {
+        try {
             return Optional.of(appointmentRepository.save(appointment));
         } catch (Exception e) {
             return Optional.empty();
         }
+       }
+
+    public List<Appointment> findAllAppointments() {
+        return this.appointmentRepository.findAll();
     }
+
 }
+
+
+
+

@@ -7,47 +7,47 @@ public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String naam;
-    private String adres;
-    private String telefoonnummer;
+    private String name;
+    private String address;
+    private String phonenumber;
 
     protected Supplier() {} //voor jpa
-    public Supplier(String naam, String adres, String telefoonnummer) {
-        this.naam = naam;
-        this.adres = adres;
-        this.telefoonnummer = telefoonnummer;
+    public Supplier(String name, String address, String phonenumber) {
+        this.name = name;
+        this.address = address;
+        this.phonenumber = phonenumber;
     }
 
-    public String getNaam() {
-        return naam;
+    public String getName() {
+        return name;
     }
 
-    public void setNaam(String naam) {
-        this.naam = naam;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAdres() {
-        return adres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getTelefoonnummer() {
-        return telefoonnummer;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setTelefoonnummer(String telefoonnummer) {
-        this.telefoonnummer = telefoonnummer;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     @Override
     public String toString() {
         return "Supplier{" +
-                "naam='" + naam + '\'' +
-                ", adres='" + adres + '\'' +
-                ", telefoonnummer='" + telefoonnummer + '\'' +
+                "naam='" + name + '\'' +
+                ", adres='" + address + '\'' +
+                ", telefoonnummer='" + phonenumber + '\'' +
                 '}';
     }
 }

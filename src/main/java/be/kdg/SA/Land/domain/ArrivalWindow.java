@@ -10,14 +10,16 @@ public class ArrivalWindow {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID vensterId;
-    private LocalDateTime aankomstTijd;
-    private LocalDateTime vertrekTijd;
+    private LocalDateTime ArrivalTime;
+    private LocalDateTime LeavingTime;
 
-    public LocalDateTime getAankomstTijd() {
-        return aankomstTijd;
+    public LocalDateTime getArrivalTime() {
+        return ArrivalTime;
     }
 
-    public LocalDateTime getVertrekTijd() {
-        return vertrekTijd;
+    public LocalDateTime getLeavingTime() {
+        return LeavingTime;
     }
+
+
 }
