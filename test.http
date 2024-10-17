@@ -3,3 +3,14 @@ GET http://localhost:8080/api/weighbridgetickets/arrival/1-ABC-234
 
 ###
 GET http://localhost:8081/api/warehouse/2
+
+###
+POST http://localhost:8080/api/weighbridgetickets/create
+Content-Type: application/json
+
+{
+  "id": 1,
+  "amount": 5.5,
+  "timeOfDelivery": "2024-10-17T10:30:00",
+  "materialType": "Slak"
+}
