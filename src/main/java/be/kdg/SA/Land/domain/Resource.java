@@ -1,7 +1,7 @@
 package be.kdg.SA.Land.domain;
 
 import jakarta.persistence.*;
-
+import be.kdg.SA.Land.domain.enums.*;
 import java.util.UUID;
 
 @Entity
@@ -9,13 +9,14 @@ public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID ResourceId;
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private ResourceType name;
     private String Description;
     private int StoragePrice;
     private int ProductPrice;
 
     protected Resource() {} //voor jpa
-    public Resource(UUID ResourceId, String Description, int StoragePrice, int ProductPrice, String name) {
+    public Resource(UUID ResourceId, String Description, int StoragePrice, int ProductPrice, ResourceType name) {
         this.ResourceId = ResourceId;
         this.Description = Description;
         this.StoragePrice = StoragePrice;
@@ -27,7 +28,7 @@ public class Resource {
         return ResourceId;
     }
 
-    public String getName() {
+    public ResourceType getName() {
         return name;
     }
 

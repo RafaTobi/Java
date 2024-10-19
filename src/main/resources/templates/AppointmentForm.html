@@ -2,28 +2,62 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Grondstof</title>
+  <title>Make Your Appointment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-  <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-</head>
-
 </head>
 <body>
-<h1>Make your appointment</h1>
-<form action="/add-appointment" method="POST" th:object="${Appointment}">
-  <div th:if="${#fields.hasAnyErrors()}">The form contained errors</div>
-  <div>
-    <label for="naam"></label>
-    <input id="naam" type="text" th:field="*{}">
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="text-center mb-4">Make Your Appointment</h1>
+      <form action="/add-appointment" method="POST" th:object="${Appointment}" >
+        <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">The form contained errors</div>
+
+        <div class="form-group mb-3">
+          <label for="supplier">Supplier Name</label>
+          <input type="text" class="form-control" id="supplier" th:field="*{supplier.name}" required>
+          <div class="invalid-feedback">Please provide a supplier name.</div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="truck">Truck License Plate</label>
+          <input type="text" class="form-control" id="truck" th:field="*{truck.licenseplate}" required>
+          <div class="invalid-feedback">Please provide the truck's license plate.</div>
+        </div>
+
+        <!-- Resource select -->
+        <div class="form-group mb-3">
+          <label for="resource">Resource</label>
+          <select id="resource" class="form-select" th:field="*{resource.name}" required>
+            <option value="" disabled selected>Select a resource</option>
+            <option th:each="resource : ${T(be.kdg.SA.Land.domain.enums.ResourceType).values()}" th:value="${resource}" th:text="${resource}"></option>
+          </select>
+          <div class="invalid-feedback">Please provide the resource you are carrying.</div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="arrivalDate">Select Arrival Date</label>
+          <input type="date" id="arrivalDate" class="form-control" th:field="*{arrivalWindow.date}" required>
+          <div class="invalid-feedback">Please select a date.</div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="arrivalTimeSlot">Select Arrival Time Slot</label>
+          <select id="arrivalTimeSlot" class="form-select" th:field="*{arrivalWindow.startTime}" required>
+            <option value="" disabled selected>Select a time window</option>
+            <option th:each="slot : ${TimeSlots}" th:value="${slot.startTime}" th:text="${slot.timeslot}"></option>
+          </select>
+        </div>
+
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block btn-submit">Add Appointment</button>
+      </form>
+    </div>
   </div>
-  <div>
-    <label for="opslagPrijs"></label>
-    <input type="number" step=".01" id="opslagPrijs" th:field="*{opslagPrijs}">
-  </div>
-  <div>
-    <label for="verkoopPrijs"></label>
-    <input type="number" step=".01" id="verkoopPrijs" th:field="*{verkoopPrijs}"></div>
-  <button type="submit">Add</button>
-</form>
+</div>
+<!-- Bootstrap JS -->
+<script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

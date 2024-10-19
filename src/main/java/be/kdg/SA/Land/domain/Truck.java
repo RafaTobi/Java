@@ -37,6 +37,14 @@ public class Truck {
         this.laadvermogen = laadvermogen;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Truck{" +

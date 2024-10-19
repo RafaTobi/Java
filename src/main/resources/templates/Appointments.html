@@ -20,6 +20,12 @@
         </div>
     </div>
 
+    <div class="row mb-4">
+        <div class="col text-center">
+            <a href="/add-appointment" class="btn btn-primary">Add Appointment</a>
+        </div>
+    </div>
+
     <!-- Table for appointments -->
     <div class="row">
         <div class="col">
@@ -29,8 +35,8 @@
                     <th>Truck</th>
                     <th>Supplier</th>
                     <th>Resource</th>
-                    <th>Arrival Time</th>
-                    <th>Leaving Time</th>
+                    <th>Date</th>
+                    <th>Time slot</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,8 +44,8 @@
                     <td th:text="${appointment.truck.getLicenseplate()}"></td>
                     <td th:text="${appointment.supplier.getName()}"></td>
                     <td th:text="${appointment.resource.getName()}"></td>
-                    <td th:text="${appointment.getArrivalWindow().getArrivalTime()}"></td>
-                    <td th:text="${appointment.getArrivalWindow().getLeavingTime()}"></td>
+                    <td th:text="${appointment.getArrivalWindow().getDate()}"></td>
+                    <td th:text="${appointment.getArrivalWindow().getTimeslot()}"></td>
                 </tr>
                 </tbody>
             </table>

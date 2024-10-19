@@ -1,47 +1,26 @@
+// AppointmentDto.java
 package be.kdg.SA.Land.controller.Dto;
 
-import be.kdg.SA.Land.domain.*;
-import jakarta.validation.constraints.NotBlank;
-
+import be.kdg.SA.Land.domain.ArrivalWindow;
+import be.kdg.SA.Land.domain.Resource;
+import be.kdg.SA.Land.domain.Supplier;
+import be.kdg.SA.Land.domain.Truck;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
 public class AppointmentDto {
     private UUID appointmentId;
-    @NotBlank(message = "supplier is mandatory")
+    @NotNull
     private Supplier supplier;
-    @NotBlank(message = "truck is mandatory")
+    @NotNull
     private Truck truck;
-    @NotBlank(message = "resource is mandatory")
+    @NotNull
     private Resource resource;
-    @NotBlank(message = "arrivalWindow is mandatory")
+    @NotNull
     private ArrivalWindow arrivalWindow;
 
-    public AppointmentDto(Appointment appointment) {
-        this.appointmentId = appointment.getAppointmentId();
-        this.supplier = appointment.getSupplier();
-        this.truck = appointment.getTruck();
-        this.resource = appointment.getResource();
-        this.arrivalWindow = appointment.getArrivalWindow();
-
-    }
-
-    public AppointmentDto() {
-
-    }
-    public Appointment toSource() {
-        return new Appointment(supplier, truck, resource, arrivalWindow);
-    }
-
-
-    public UUID getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(UUID appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-
+    // Getters and setters
     public Supplier getSupplier() {
         return supplier;
     }
@@ -72,5 +51,13 @@ public class AppointmentDto {
 
     public void setArrivalWindow(ArrivalWindow arrivalWindow) {
         this.arrivalWindow = arrivalWindow;
+    }
+
+    public UUID getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(UUID appointmentId) {
+        this.appointmentId = appointmentId;
     }
 }
