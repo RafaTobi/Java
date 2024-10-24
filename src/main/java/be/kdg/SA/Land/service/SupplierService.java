@@ -17,7 +17,7 @@ public class SupplierService {
     }
 
     public Supplier findOrCreateSupplier(Supplier supplier) {
-        Optional<Supplier> existingSupplier = supplierRepository.findByName(supplier.getName());
+        Optional<Supplier> existingSupplier = supplierRepository.findById(supplier.getId());
         return existingSupplier.orElseGet(() -> supplierRepository.save(supplier));
     }
 

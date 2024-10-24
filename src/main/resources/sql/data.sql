@@ -16,10 +16,10 @@ VALUES ('96a66f8e-6f3e-4ab3-8e8d-d5dae3fb76bc', '2024-10-22', '14:00:00', '15:00
 
 -- Inserting test data for Resource
 INSERT INTO RESOURCE (resource_id, name, product_price, storage_price, description)
-VALUES ('61b86f1d-8d3a-428f-8c8f-a7dae9fb10ab', 'RESOURCE1', 10, 20, 'Resource 1 description');
+VALUES ('61b86f1d-8d3a-428f-8c8f-a7dae9fb10ab', 'Gips', 10, 20, 'Resource 1 description');
 
 INSERT INTO RESOURCE (resource_id, name, product_price, storage_price, description)
-VALUES ('71a16c2d-5b3b-4aa7-9c9e-b9cde3fc22ac', 'RESOURCE2', 20, 30, 'Resource 2 description');
+VALUES ('71a16c2d-5b3b-4aa7-9c9e-b9cde3fc22ac', 'Cement', 20, 30, 'Resource 2 description');
 
 -- Inserting test data for Truck
 INSERT INTO TRUCK (id, licenseplate, laadvermogen)

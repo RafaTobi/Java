@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface SupplierRepository extends JpaRepository<Supplier, UUID> {
     Optional<Supplier> findByName(String name);
+    Optional<Supplier> findById(Long id);
 }
