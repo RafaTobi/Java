@@ -2,6 +2,7 @@ package be.kdg.SA.Land.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,6 +15,8 @@ public class Truck {
     private int laadvermogen;
     @OneToOne
     private WeighBridgeTicket wbTicket;
+    @OneToMany(mappedBy = "truck")
+    private List<Appointment> appointments;
 
     protected Truck() {} //voor jpa
     public Truck(String licenseplate, int laadvermogen) {
@@ -43,6 +46,22 @@ public class Truck {
 
     public UUID getId() {
         return id;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public WeighBridgeTicket getWbTicket() {
+        return wbTicket;
+    }
+
+    public void setWbTicket(WeighBridgeTicket wbTicket) {
+        this.wbTicket = wbTicket;
     }
 
     @Override

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home - Appointments Management</title>
+    <title>Krystal Distributie Group - Home</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
@@ -12,17 +12,29 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Appointments Management</a>
+        <a class="navbar-brand" href="/">Krystal Distributie Group</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/appointments">Appointments</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/add-appointment">Add Appointment</a>
+                    <a class="nav-link" th:href="@{/appointments}">Manage Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/add-appointment}">Add Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/truck-entry}">Check Truck Entry</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/fifo-queue}">FIFO Queue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/weighbridge}">Weighbridge Management</a>
                 </li>
             </ul>
         </div>
@@ -30,21 +42,81 @@
 </nav>
 
 <main>
-<div class="container mt-5">
-    <div class="row mb-4">
-        <div class="col text-center">
-            <h1 class="display-4">Welcome to Appointments Management</h1>
-            <p class="lead">Manage your appointments efficiently and effectively.</p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="display-4">Welcome to Krystal Distributie Group</h1>
+                <p class="lead">Manage your appointments, track trucks, and monitor logistics with ease.</p>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col text-center">
-            <a href="/appointments" class="btn btn-primary btn-lg">View Appointments</a>
-            <a href="/add-appointment" class="btn btn-secondary btn-lg">Add New Appointment</a>
+        <div class="row text-center mt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Appointments</h5>
+                        <p class="card-text">View and manage all your current appointments.</p>
+                        <a href="/appointments" class="btn btn-primary">View Appointments</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add New Appointment</h5>
+                        <p class="card-text">Create a new appointment for an incoming truck.</p>
+                        <a href="/add-appointment" class="btn btn-secondary">Add Appointment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Truck Entry</h5>
+                        <p class="card-text">Check and verify the truck's license plate for entry.</p>
+                        <a href="/truck-entry" class="btn btn-success">Check Entry</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="row text-center mt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">FIFO Queue</h5>
+                        <p class="card-text">View the list of trucks waiting in the FIFO queue.</p>
+                        <a href="/fifo-queue" class="btn btn-warning">View FIFO Queue</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Weighbridge Management</h5>
+                        <p class="card-text">Manage and monitor the weighbridge and weighing operations.</p>
+                        <a href="/weighbridge" class="btn btn-danger disabled">Under Construction</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Reports & Analytics</h5>
+                        <p class="card-text">View detailed reports and insights on logistics performance.</p>
+                        <a href="/reports" class="btn btn-info disabled">Under Construction</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
 </main>
+
+<footer class="text-center mt-5">
+    <div class="container">
+        <p class="text-muted">&copy; 2024 Krystal Distributie Group. All Rights Reserved.</p>
+    </div>
+</footer>
 </body>
 </html>

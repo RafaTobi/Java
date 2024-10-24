@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -54,5 +55,13 @@ public class AppointmentService {
 
         Appointment appointment = new Appointment(supplier, truck, resource, arrivalWindow);
         appointmentRepository.save(appointment);
+    }
+
+    public boolean isTruckScheduledForNow(Truck truck) {
+        // Fetch current time
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        // Find an appointment that matches the truck and its time window
+        return appointmentRepository.existsByTruckAndArrivalWindowTime(truck, currentTime);
     }
 }

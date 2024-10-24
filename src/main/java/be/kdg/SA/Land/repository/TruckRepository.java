@@ -7,5 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface TruckRepository extends JpaRepository<Truck, UUID> {
-    Optional<Truck> findTruckByLicenseplate(String nummerplaat);
+    Optional<Truck> findTruckByLicenseplate(String licenseplate);
 }
