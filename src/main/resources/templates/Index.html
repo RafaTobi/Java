@@ -2,23 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home - Appointments Management</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-
 </head>
-<body>
-<h1>Subscribe to xXEmily2009Xx</h1>
 
-<div class="row mb-4">
-    <div class="col text-center">
-        <a href="/add-appointment" class="btn btn-primary">Add Appointment</a>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Appointments Management</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/appointments">Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add-appointment">Add Appointment</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h1 class="display-4">Welcome to Appointments Management</h1>
+            <p class="lead">Manage your appointments efficiently and effectively.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <a href="/appointments" class="btn btn-primary btn-lg">View Appointments</a>
+            <a href="/add-appointment" class="btn btn-secondary btn-lg">Add New Appointment</a>
+        </div>
     </div>
 </div>
-<div class="row mb-4">
-    <div class="col text-center">
-        <a href="/appointments" class="btn btn-primary">All Appointments</a>
-    </div>
-</div>
+</main>
 </body>
 </html>

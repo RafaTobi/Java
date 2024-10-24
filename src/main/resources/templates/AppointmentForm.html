@@ -8,6 +8,24 @@
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Appointments Management</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/appointments">Appointments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/add-appointment">Add Appointment</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div class="container mt-5">
   <div class="card">
     <div class="card-body">
@@ -18,7 +36,7 @@
         <div class="form-group mb-3">
           <label for="supplier">Supplier Name</label>
           <input type="text" class="form-control" id="supplier" th:field="*{supplier.name}" required>
-          <div class="invalid-feedback">Please provide a supplier name.</div>
+          <div class="invalid-feedback" th:if="${#fields.hasErrors('supplier.name')}" th:errors="*{supplier.name}">Supplier does not exist.</div>
         </div>
         <div class="form-group mb-3">
           <label for="truck">Truck License Plate</label>
@@ -29,7 +47,7 @@
         <!-- Resource select -->
         <div class="form-group mb-3">
           <label for="resource">Resource</label>
-          <select id="resource" class="form-select" th:field="*{resource.name}" required>
+          <select id="resource" class="form-select" th:field="*{resource}" required>
             <option value="" disabled selected>Select a resource</option>
             <option th:each="resource : ${T(be.kdg.SA.Land.domain.enums.ResourceType).values()}" th:value="${resource}" th:text="${resource}"></option>
           </select>
@@ -51,13 +69,13 @@
         </div>
 
 
-        <!-- Submit button -->
+
         <button type="submit" class="btn btn-primary btn-block btn-submit">Add Appointment</button>
       </form>
     </div>
   </div>
 </div>
-<!-- Bootstrap JS -->
+
 <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

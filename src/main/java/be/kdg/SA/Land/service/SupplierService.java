@@ -16,9 +16,13 @@ public class SupplierService {
         this.supplierRepository = supplierRepository;
     }
 
-    public Supplier findOrCreateSupplier(Supplier supplier) {
-        Optional<Supplier> existingSupplier = supplierRepository.findById(supplier.getId());
-        return existingSupplier.orElseGet(() -> supplierRepository.save(supplier));
+    public Supplier findSupplier(Supplier supplier) {
+        Optional<Supplier> existingSupplier = supplierRepository.findByName(supplier.getName());
+        if (existingSupplier.isPresent()) {
+            return existingSupplier.get();
+        } else {
+            throw new IllegalArgumentException("Supplier does not exist in the database");
+        }
     }
 
     public List<Supplier> findAllSuppliers() {

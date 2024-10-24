@@ -39,8 +39,8 @@ public class AppointmentService {
 
     @Transactional
     public void createAppointment(AppointmentDto appointmentDto) {
-        Supplier supplier = supplierService.findOrCreateSupplier(appointmentDto.getSupplier());
-        Truck truck = truckService.findOrCreateTruck(appointmentDto.getTruck());
+        Supplier supplier = supplierService.findSupplier(appointmentDto.getSupplier());
+        Truck truck = truckService.findTruck(appointmentDto.getTruck());
         ArrivalWindow arrivalWindow = appointmentDto.getArrivalWindow();
         Resource resource = appointmentDto.getResource();
 
@@ -48,7 +48,7 @@ public class AppointmentService {
             arrivalWindowRepository.save(arrivalWindow);
         }
 
-        if (resource.getResourceId() == null) {
+        if (resource.getName() == null) {
             resourceRepository.save(resource);
         }
 
