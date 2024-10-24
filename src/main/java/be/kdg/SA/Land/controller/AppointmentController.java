@@ -58,11 +58,14 @@ public class AppointmentController {
         }
 
         Supplier supplier;
+        Truck truck;
         try {
             supplier = supplierService.findSupplier(appointmentDto.getSupplier());
+            truck = truckService.findTruck(appointmentDto.getTruck());
         } catch (IllegalArgumentException e) {
 
             errors.rejectValue("supplier.name", "error.supplier", "Supplier does not exist in the database");
+            errors.rejectValue("truck.licenseplate", "error.truck", "Truck does not exist in the database");
             model.addAttribute("TimeSlots", arrivalWindowService.getAvailableTimeSlots());
             return "AppointmentForm";
         }
@@ -78,7 +81,7 @@ public class AppointmentController {
         Resource resource = resourceService.findResource(appointmentDto.getResource());
         appointmentDto.setResource(resource);
 
-        Truck truck = truckService.findTruck(appointmentDto.getTruck());
+
         appointmentDto.setTruck(truck);
 
         appointmentService.createAppointment(appointmentDto);

@@ -36,12 +36,12 @@
         <div class="form-group mb-3">
           <label for="supplier">Supplier Name</label>
           <input type="text" class="form-control" id="supplier" th:field="*{supplier.name}" required>
-          <div class="invalid-feedback" th:if="${#fields.hasErrors('supplier.name')}" th:errors="*{supplier.name}">Supplier does not exist.</div>
+          <div class="alert alert-danger" th:if="${#fields.hasErrors('supplier.name')}" th:errors="*{supplier.name}">Supplier does not exist.</div>
         </div>
         <div class="form-group mb-3">
           <label for="truck">Truck License Plate</label>
           <input type="text" class="form-control" id="truck" th:field="*{truck.licenseplate}" required>
-          <div class="invalid-feedback">Please provide the truck's license plate.</div>
+          <div class="alert alert-danger" th:if="${#fields.hasErrors('truck.licenseplate')}" th:errors="*{truck.licenseplate}">Supplier does not exist.</div>
         </div>
 
         <!-- Resource select -->
