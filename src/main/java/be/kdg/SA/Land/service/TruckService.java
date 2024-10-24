@@ -12,9 +12,10 @@ import java.util.Optional;
 @Service
 public class TruckService {
     private final TruckRepository truckRepository;
-
-    public TruckService(TruckRepository truckRepository) {
+    private final FifoQueueService fifoQueueService;
+    public TruckService(TruckRepository truckRepository, FifoQueueService fifoQueueService) {
         this.truckRepository = truckRepository;
+        this.fifoQueueService = fifoQueueService;
     }
 
     public Truck findTruck(Truck truck) {
@@ -36,8 +37,11 @@ public class TruckService {
         if (truckOpt.isPresent()) {
             Truck truck = truckOpt.get();
             LocalDateTime now = LocalDateTime.now();
+
+            // Check if the truck has a valid appointment
             boolean hasValidAppointment = truck.getAppointments().stream()
                     .anyMatch(appointment -> {
+                        // Convert date and time fields to LocalDateTime
                         LocalDateTime startDateTime = appointment.getArrivalWindow().getDate().toInstant()
                                 .atZone(ZoneId.systemDefault())
                                 .toLocalDateTime()
@@ -51,10 +55,13 @@ public class TruckService {
                         return now.isAfter(startDateTime) && now.isBefore(endDateTime);
                     });
 
+            // If valid appointment exists and truck is within the window, allow entry
             if (hasValidAppointment) {
                 return "Gate opened for truck with license plate " + licensePlate + ". Proceed to weighbridge number: " + truck.getWbTicket().getWeighBridgeNumber();
             } else {
-                return "Truck with license plate " + licensePlate + " is not allowed to enter. No valid appointment found.";
+
+                fifoQueueService.addTruckToQueue(truck);
+                return "Truck with license plate " + licensePlate + " has been added to the FIFO queue as no valid appointment was found or it arrived outside its appointment window.";
             }
         } else {
             return "No truck found with license plate " + licensePlate;

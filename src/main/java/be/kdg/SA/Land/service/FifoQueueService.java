@@ -11,6 +11,7 @@ public class FifoQueueService {
 
     public void addTruckToQueue(Truck truck) {
         fifoQueue.addTruck(truck);
+        System.out.println("Truck with license plate " + truck.getLicenseplate() + " added to FIFO queue.");
     }
 
     public FifoQueue getFifoQueue() {
