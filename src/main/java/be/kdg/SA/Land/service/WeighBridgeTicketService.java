@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class WeighBridgeTicketService {
@@ -20,20 +21,63 @@ public class WeighBridgeTicketService {
     }
 
     public WeighBridgeTicket arrivalWeighIn(String licencePlate, long weighBridgeNumber){
-        Optional<Truck> truck = truckRepository.findTruckByLicenseplate(licencePlate);
-        if(truck.isEmpty()) return null;
+        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licencePlate);
+        if (truckOpt.isEmpty()) return null;
 
+        Truck truck = truckOpt.get();
         WeighBridgeTicket ticket = new WeighBridgeTicket();
         ticket.setWeighBridgeNumber(weighBridgeNumber);
-        ticket.setTruck(truck.get());
+        ticket.setTruck(truck);
         ticket.setArrivalTime(LocalDateTime.now());
-        ticket.setArrivalWeight(truck.get().getLaadvermogen()); //TODO hoe moet dit echt gewogen worden?
+        ticket.setArrivalWeight(truck.getLaadvermogen());
+        ticketRepository.save(ticket);
+        truck.setWbTicket(ticket);
+        truckRepository.save(truck);
 
         return ticket;
     }
 
-    public WeighBridgeTicket departureWeighIn(String licencePlate){
+    public WeighBridgeTicket departureWeighIn(String licencePlate) {
 
-        return null;
+        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licencePlate);
+        if (truckOpt.isEmpty()) return null;
+
+        Truck truck = truckOpt.get();
+        Optional<WeighBridgeTicket> ticketOpt = ticketRepository.findByTruckAndDepartureTimeIsNull(truck);
+        if (ticketOpt.isEmpty()) return null;
+
+        WeighBridgeTicket ticket = ticketOpt.get();
+        ticket.setDepartureTime(LocalDateTime.now());
+        ticket.setDepartureWeight(truck.getLaadvermogen());
+
+        double netWeight = ticket.getArrivalWeight() - ticket.getDepartureWeight();
+        ticket.setNetWeight(netWeight);
+
+        ticketRepository.save(ticket);
+        return ticket;
+    }
+
+    public long assignWeighBridgeNumber(String licencePlate) {
+        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licencePlate);
+        if (truckOpt.isEmpty()) return -1;
+
+        Truck truck = truckOpt.get();
+
+        WeighBridgeTicket ticket = new WeighBridgeTicket();
+        long weighBridgeNumber = generateWeighBridgeNumber();
+        ticket.setWeighBridgeNumber(weighBridgeNumber);
+        ticket.setTruck(truck);
+        ticket.setArrivalTime(LocalDateTime.now());
+
+        ticket.setArrivalWeight(truck.getLaadvermogen());
+        ticketRepository.save(ticket);
+        truck.setWbTicket(ticket);
+        truckRepository.save(truck);
+
+        return weighBridgeNumber;
+    }
+
+    private long generateWeighBridgeNumber() {
+          return new Random().nextLong();
     }
 }

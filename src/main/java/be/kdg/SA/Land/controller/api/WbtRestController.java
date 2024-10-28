@@ -23,7 +23,7 @@ public class WbtRestController {
 
     @GetMapping("/arrival/{licencePlate}")
     public ResponseEntity<WeighBridgeTicket> recordArrival(@PathVariable String licencePlate) {
-        WeighBridgeTicket ticket = ticketService.arrivalWeighIn(licencePlate, 1); //TODO hoe weegbrug bepalen?
+        WeighBridgeTicket ticket = ticketService.arrivalWeighIn(licencePlate, 1); //TODO hoe weegbrug bepalen? //goei vraag
 
         return ResponseEntity.ok(ticket);
     }

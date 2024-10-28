@@ -14,6 +14,7 @@ public class WeighBridgeTicket {
     private long weighBridgeNumber;
     private double arrivalWeight;
     private double departureWeight;
+    private double netWeight;
     private LocalDateTime arrivalTime;
     private LocalDateTime departureTime;
     @OneToOne
@@ -77,5 +78,13 @@ public class WeighBridgeTicket {
 
     public void setTruck(Truck truck) {
         this.truck = truck;
+    }
+
+    public double getNetWeight() {
+        return netWeight;
+    }
+
+    public void setNetWeight(double netWeight) {
+        this.netWeight = netWeight;
     }
 }
