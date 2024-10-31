@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/weighbridgetickets")
 public class WbtRestController {
     private final WeighBridgeTicketService ticketService;
-    private final RabbitTemplate rabbitTemplate;
 
-    public WbtRestController(WeighBridgeTicketService ticketService, RabbitTemplate rabbitTemplate) {
+    public WbtRestController(WeighBridgeTicketService ticketService) {
         this.ticketService = ticketService;
-        this.rabbitTemplate = rabbitTemplate;
     }
 
     @GetMapping("/arrival/{licencePlate}")
@@ -33,10 +31,5 @@ public class WbtRestController {
         WeighBridgeTicket ticket = ticketService.departureWeighIn(licencePlate);
 
         return ResponseEntity.ok(ticket);
-    }
-
-    @PostMapping("/create")
-    public void completeDelivery(@RequestBody PdtMessageDto pdtMessageDto) throws JsonProcessingException {
-        rabbitTemplate.convertAndSend(RabbitTopology.WBT_EXCHANGE, "wbt.create", pdtMessageDto);
     }
 }

@@ -1,29 +1,21 @@
 package be.kdg.SA.Land.controller.Dto;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class PdtMessageDto {
-    private long id;
+    private UUID supplierUuid;
     private double amount;
     private LocalDateTime timeOfDelivery;
     private String materialType;
 
-    public PdtMessageDto() {
+
+    public UUID getSupplierUuid() {
+        return supplierUuid;
     }
 
-    public PdtMessageDto(long id, double amount, LocalDateTime timeOfDelivery, String materialType) {
-        this.id = id;
-        this.amount = amount;
-        this.timeOfDelivery = timeOfDelivery;
-        this.materialType = materialType;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setSupplierUuid(UUID supplierUuid) {
+        this.supplierUuid = supplierUuid;
     }
 
     public double getAmount() {

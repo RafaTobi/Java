@@ -4,13 +4,13 @@ GET http://localhost:8080/api/weighbridgetickets/arrival/1-ABC-234
 ###
 GET http://localhost:8081/api/warehouse/2
 
-###
-POST http://localhost:8080/api/weighbridgetickets/create
+### TEST Messaging naar warehouse
+POST http://localhost:8080/pdt/create
 Content-Type: application/json
 
 {
-  "id": 1,
-  "amount": 5.5,
+  "supplierUuid": "9a53db66-573a-462a-bb1e-a576d6b81549",
+  "amount": 20,
   "timeOfDelivery": "2024-10-17T10:30:00",
   "materialType": "Slak"
 }
