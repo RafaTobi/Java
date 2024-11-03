@@ -3,7 +3,7 @@ package be.kdg.SA.Land.service;
 import be.kdg.SA.Land.domain.Truck;
 import be.kdg.SA.Land.domain.WeighBridgeTicket;
 import be.kdg.SA.Land.repository.TruckRepository;
-import be.kdg.SA.Land.repository.WeighBridgedTicketRepository;
+import be.kdg.SA.Land.repository.WeighBridgeTicketRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -12,10 +12,10 @@ import java.util.Random;
 
 @Service
 public class WeighBridgeTicketService {
-    private final WeighBridgedTicketRepository ticketRepository;
+    private final WeighBridgeTicketRepository ticketRepository;
     private final TruckRepository truckRepository;
 
-    public WeighBridgeTicketService(WeighBridgedTicketRepository ticketRepository, TruckRepository truckRepository) {
+    public WeighBridgeTicketService(WeighBridgeTicketRepository ticketRepository, TruckRepository truckRepository) {
         this.ticketRepository = ticketRepository;
         this.truckRepository = truckRepository;
     }

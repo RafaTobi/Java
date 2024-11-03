@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface WeighBridgedTicketRepository extends JpaRepository<WeighBridgeTicket, Long> {
+public interface WeighBridgeTicketRepository extends JpaRepository<WeighBridgeTicket, Long> {
     Optional<WeighBridgeTicket> findByTruckAndDepartureTimeIsNull(Truck truck);
 }

@@ -1,12 +1,7 @@
 package be.kdg.SA.Land.controller.api;
 
-import be.kdg.SA.Land.config.RabbitTopology;
-import be.kdg.SA.Land.controller.Dto.PdtMessageDto;
-import be.kdg.SA.Land.controller.Dto.WbtDTO;
 import be.kdg.SA.Land.domain.WeighBridgeTicket;
 import be.kdg.SA.Land.service.WeighBridgeTicketService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,6 @@
 package be.kdg.SA.Land.repository;
 
 
-import be.kdg.SA.Land.domain.Appointment;
 import be.kdg.SA.Land.domain.ArrivalWindow;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -2,7 +2,6 @@ package be.kdg.SA.Land.domain;
 
 import jakarta.persistence.*;
 import be.kdg.SA.Land.domain.enums.*;
-import java.util.UUID;
 
 @Entity
 public class Resource {

@@ -2,7 +2,6 @@
 package be.kdg.SA.Land.controller;
 
 import be.kdg.SA.Land.domain.Truck;
-import be.kdg.SA.Land.service.FifoQueueService;
 import be.kdg.SA.Land.service.TruckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

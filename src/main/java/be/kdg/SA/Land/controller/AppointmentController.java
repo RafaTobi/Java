@@ -1,11 +1,10 @@
 package be.kdg.SA.Land.controller;
 
-import be.kdg.SA.Land.controller.Dto.AppointmentDto;
+import be.kdg.SA.Land.controller.dto.AppointmentDto;
 import be.kdg.SA.Land.domain.ArrivalWindow;
 import be.kdg.SA.Land.domain.Resource;
 import be.kdg.SA.Land.domain.Supplier;
 import be.kdg.SA.Land.domain.Truck;
-import be.kdg.SA.Land.domain.enums.ResourceType;
 import be.kdg.SA.Land.service.*;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

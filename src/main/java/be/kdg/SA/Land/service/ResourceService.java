@@ -1,13 +1,10 @@
 package be.kdg.SA.Land.service;
 
 import be.kdg.SA.Land.domain.Resource;
-import be.kdg.SA.Land.domain.enums.ResourceType;
 import be.kdg.SA.Land.repository.ResourceRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.EnumSet;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class ResourceService {

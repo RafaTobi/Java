@@ -1,6 +1,6 @@
 package be.kdg.SA.Land.service;
 
-import be.kdg.SA.Land.controller.Dto.AppointmentDto;
+import be.kdg.SA.Land.controller.dto.AppointmentDto;
 import be.kdg.SA.Land.domain.Appointment;
 import be.kdg.SA.Land.domain.ArrivalWindow;
 import be.kdg.SA.Land.domain.Resource;

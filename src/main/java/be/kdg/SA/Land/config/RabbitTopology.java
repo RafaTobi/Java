@@ -26,4 +26,6 @@ public class RabbitTopology {
     public Binding topicWbtBinding(TopicExchange topicExchange, Queue topicQueueWbt) {
         return BindingBuilder.bind(topicQueueWbt).to(topicExchange).with("wbt.*");
     }
+
+
 }

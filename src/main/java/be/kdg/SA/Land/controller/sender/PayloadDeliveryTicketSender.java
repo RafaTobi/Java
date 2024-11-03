@@ -1,7 +1,7 @@
 package be.kdg.SA.Land.controller.sender;
 
 import be.kdg.SA.Land.config.RabbitTopology;
-import be.kdg.SA.Land.controller.Dto.PdtMessageDto;
+import be.kdg.SA.Land.controller.dto.PdtMessageDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.PostMapping;

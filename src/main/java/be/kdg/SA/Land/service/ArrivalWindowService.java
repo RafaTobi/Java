@@ -1,9 +1,7 @@
 package be.kdg.SA.Land.service;
 
 import be.kdg.SA.Land.domain.ArrivalWindow;
-import be.kdg.SA.Land.domain.Truck;
 import be.kdg.SA.Land.repository.ArrivalWindowRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
