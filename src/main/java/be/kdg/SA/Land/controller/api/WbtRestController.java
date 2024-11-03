@@ -20,16 +20,16 @@ public class WbtRestController {
     }
 
     @GetMapping("/arrival/{licencePlate}")
-    public ResponseEntity<WeighBridgeTicket> recordArrival(@PathVariable String licencePlate) {
-        WeighBridgeTicket ticket = ticketService.arrivalWeighIn(licencePlate, 1); //TODO hoe weegbrug bepalen? //goei vraag
+public ResponseEntity<WeighBridgeTicket> recordArrival(@PathVariable String licencePlate) {
+    long weighBridgeNumber = ticketService.assignWeighBridgeNumber(licencePlate);
+    ticketService.logTruckWeight(weighBridgeNumber, licencePlate, 0.0, true); // Assuming weight is 0.0 for now
+    return ResponseEntity.ok().build();
+}
 
-        return ResponseEntity.ok(ticket);
-    }
-
-    @GetMapping("/departure/{licencePlate}")
-    public ResponseEntity<WeighBridgeTicket> recordDeparture(@PathVariable String licencePlate) {
-        WeighBridgeTicket ticket = ticketService.departureWeighIn(licencePlate);
-
-        return ResponseEntity.ok(ticket);
-    }
+@GetMapping("/departure/{licencePlate}")
+public ResponseEntity<WeighBridgeTicket> recordDeparture(@PathVariable String licencePlate) {
+    long weighBridgeNumber = ticketService.assignWeighBridgeNumber(licencePlate);
+    ticketService.logTruckWeight(weighBridgeNumber, licencePlate, 0.0, false); // Assuming weight is 0.0 for now
+    return ResponseEntity.ok().build();
+}
 }

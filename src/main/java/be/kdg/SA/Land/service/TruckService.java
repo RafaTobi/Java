@@ -77,21 +77,15 @@ public class TruckService {
 
         return now.isAfter(startDateTime) && now.isBefore(endDateTime);
     }
-    public boolean isWithinArrivalWindow(Truck truck) {
-        LocalDateTime now = LocalDateTime.now();
-        return truck.getAppointments().stream()
-            .anyMatch(appointment -> isWithinAppointmentWindow(
-                appointment.getArrivalWindow().getDate(),
-                appointment.getArrivalWindow().getStartTime(),
-                appointment.getArrivalWindow().getEndTime(),
-                now));
-    }
+
 
     public int getTrucksInFifoQueue() {
-    return fifoQueueService.getTrucksInFifoQueue();
-}
+        return fifoQueueService.getTrucksInFifoQueue();
+    }
 
-public long countTrucksOnSite() {
-    return truckRepository.countByOnSiteTrue();
-}
+    public long countTrucksOnSite() {
+        return truckRepository.countByOnSiteTrue();
+    }
+
+
 }

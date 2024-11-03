@@ -44,19 +44,19 @@ INSERT INTO RESOURCE (name, description, product_price, storage_price)
 VALUES ('Slak', 'Slak is een bijproduct van smeltprocessen, gebruikt in beton en de wegenbouw om de duurzaamheid te verbeteren.', 160, 7);
 
 -- Inserting test data for Truck
-INSERT INTO TRUCK (id, licenseplate, laadvermogen)
-VALUES ('81d36e8e-8d4c-478e-bf8f-12dce4fb34ac', '1-ABC-234', 50);
+INSERT INTO TRUCK (id, licenseplate, laadvermogen, on_site)
+VALUES ('81d36e8e-8d4c-478e-bf8f-12dce4fb34ac', '1-ABC-234', 50, false);
 
-INSERT INTO TRUCK (id, licenseplate, laadvermogen)
-VALUES ('92b46e8f-9a6b-489e-af9f-13bce4fb45bd', '2-DEF-567', 60);
+INSERT INTO TRUCK (id, licenseplate, laadvermogen, on_site)
+VALUES ('92b46e8f-9a6b-489e-af9f-13bce4fb45bd', '2-DEF-567', 60, false);
 
 
-INSERT INTO TRUCK (id, licenseplate, laadvermogen)
-VALUES ('a1d36e8e-8d4c-478e-bf8f-12dce4fb34ad', '3-GHI-890', 70);
-INSERT INTO TRUCK (id, licenseplate, laadvermogen)
-VALUES ('b2b46e8f-9a6b-489e-af9f-13bce4fb45be', '4-JKL-123', 80);
-INSERT INTO TRUCK (id, licenseplate, laadvermogen)
-VALUES ('c3c56e8f-9b7c-489f-bf9f-14cde4fb56cf', '5-MNO-456', 90);
+INSERT INTO TRUCK (id, licenseplate, laadvermogen, on_site)
+VALUES ('a1d36e8e-8d4c-478e-bf8f-12dce4fb34ad', '3-GHI-890', 70, true);
+INSERT INTO TRUCK (id, licenseplate, laadvermogen, on_site)
+VALUES ('b2b46e8f-9a6b-489e-af9f-13bce4fb45be', '4-JKL-123', 80, true);
+INSERT INTO TRUCK (id, licenseplate, laadvermogen, on_site)
+VALUES ('c3c56e8f-9b7c-489f-bf9f-14cde4fb56cf', '5-MNO-456', 90, false);
 
 
 -- Inserting test data for Appointment

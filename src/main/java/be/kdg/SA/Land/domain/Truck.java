@@ -17,6 +17,7 @@ public class Truck {
     private WeighBridgeTicket wbTicket;
     @OneToMany(mappedBy = "truck")
     private List<Appointment> appointments;
+    private boolean onSite;
 
     protected Truck() {} //voor jpa
     public Truck(String licenseplate, int laadvermogen) {
@@ -62,6 +63,14 @@ public class Truck {
 
     public void setWbTicket(WeighBridgeTicket wbTicket) {
         this.wbTicket = wbTicket;
+    }
+
+    public boolean isOnSite() {
+        return onSite;
+    }
+
+    public void setOnSite(boolean onSite) {
+        this.onSite = onSite;
     }
 
     @Override

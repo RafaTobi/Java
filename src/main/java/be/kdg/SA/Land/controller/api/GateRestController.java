@@ -26,7 +26,6 @@ public class GateRestController {
 
     @GetMapping("/entry")
     public ResponseEntity<String> checkTruckEntry(@RequestParam String licensePlate) {
-        // Check if the truck exists
         Optional<Truck> truckOpt = truckService.findTruckByLicenseplate(licensePlate);
 
         if (truckOpt.isEmpty()) {
@@ -34,15 +33,11 @@ public class GateRestController {
         }
 
         Truck truck = truckOpt.get();
-
-        // Check if the truck has a valid appointment
         boolean hasValidAppointment = appointmentService.isTruckScheduledForNow(truck);
 
         if (!hasValidAppointment) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Truck is not scheduled for this time");
         }
-
-        // Grant access
         return ResponseEntity.ok("Gate opened for truck: " + truck.getLicenseplate());
     }
 }

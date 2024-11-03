@@ -16,12 +16,10 @@ import java.util.Optional;
 @Controller
 public class TruckController {
     private final TruckService truckService;
-    private final FifoQueueService fifoQueueService;
 
     @Autowired
-    public TruckController(TruckService truckService, FifoQueueService fifoQueueService) {
+    public TruckController(TruckService truckService) {
         this.truckService = truckService;
-        this.fifoQueueService = fifoQueueService;
     }
 
     @GetMapping("/truck-entry")
@@ -41,11 +39,7 @@ public class TruckController {
         }
     }
 
-    @GetMapping("/fifo-queue")
-    public String getFifoQueue(Model model) {
-        model.addAttribute("fifoQueue", fifoQueueService.getFifoQueue().getQueue());
-        return "fifo-queue";
-    }
+
 
     @GetMapping("/trucks-on-site")
     public String countTrucksOnSite(Model model) {

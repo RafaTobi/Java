@@ -1,4 +1,3 @@
-// src/main/java/be/kdg/SA/Land/service/WeighBridgeTicketService.java
 package be.kdg.SA.Land.service;
 
 import be.kdg.SA.Land.domain.Truck;
@@ -21,41 +20,24 @@ public class WeighBridgeTicketService {
         this.truckRepository = truckRepository;
     }
 
-    public WeighBridgeTicket arrivalWeighIn(String licensePlate, long weighBridgeNumber) {
+    public void logTruckWeight(long weighBridgeNumber, String licensePlate, double weight, boolean isArrival) {
         Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licensePlate);
-        if (truckOpt.isEmpty()) return null;
-
+        if (truckOpt.isEmpty()) {
+            return;
+        }
         Truck truck = truckOpt.get();
         WeighBridgeTicket ticket = new WeighBridgeTicket();
         ticket.setWeighBridgeNumber(weighBridgeNumber);
         ticket.setTruck(truck);
-        ticket.setArrivalTime(LocalDateTime.now());
-        ticket.setArrivalWeight(truck.getLaadvermogen());
-
+        if (isArrival) {
+            ticket.setArrivalWeight(weight);
+            ticket.setArrivalTime(LocalDateTime.now());
+        } else {
+            ticket.setDepartureWeight(weight);
+            ticket.setDepartureTime(LocalDateTime.now());
+            ticket.setNetWeight(ticket.getDepartureWeight() - ticket.getArrivalWeight());
+        }
         ticketRepository.save(ticket);
-        truck.setWbTicket(ticket);
-        truckRepository.save(truck);
-
-        return ticket;
-    }
-
-    public WeighBridgeTicket departureWeighIn(String licensePlate) {
-        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licensePlate);
-        if (truckOpt.isEmpty()) return null;
-
-        Truck truck = truckOpt.get();
-        Optional<WeighBridgeTicket> ticketOpt = ticketRepository.findByTruckAndDepartureTimeIsNull(truck);
-        if (ticketOpt.isEmpty()) return null;
-
-        WeighBridgeTicket ticket = ticketOpt.get();
-        ticket.setDepartureTime(LocalDateTime.now());
-        ticket.setDepartureWeight(truck.getLaadvermogen());
-
-        double netWeight = ticket.getArrivalWeight() - ticket.getDepartureWeight();
-        ticket.setNetWeight(netWeight);
-
-        ticketRepository.save(ticket);
-        return ticket;
     }
 
     public long assignWeighBridgeNumber(String licensePlate) {
@@ -90,8 +72,6 @@ public class WeighBridgeTicketService {
         ticketRepository.save(ticket);
         return ticket;
     }
-
-
 
     public WeighBridgeTicket updateTicketForDeparture(Truck truck, Long newWeighBridgeNumber) {
         WeighBridgeTicket ticket = truck.getWbTicket();
