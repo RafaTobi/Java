@@ -1,21 +1,27 @@
-// TruckService.java
+// src/main/java/be/kdg/SA/Land/service/TruckService.java
 package be.kdg.SA.Land.service;
 
 import be.kdg.SA.Land.domain.Truck;
 import be.kdg.SA.Land.repository.TruckRepository;
 import org.springframework.stereotype.Service;
+import be.kdg.SA.Land.domain.WeighBridgeTicket;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
 public class TruckService {
     private final TruckRepository truckRepository;
     private final FifoQueueService fifoQueueService;
-    public TruckService(TruckRepository truckRepository, FifoQueueService fifoQueueService) {
+    private final WeighBridgeTicketService weighBridgeTicketService;
+
+    public TruckService(TruckRepository truckRepository, FifoQueueService fifoQueueService, WeighBridgeTicketService weighBridgeTicketService) {
         this.truckRepository = truckRepository;
         this.fifoQueueService = fifoQueueService;
+        this.weighBridgeTicketService = weighBridgeTicketService;
     }
 
     public Truck findTruck(Truck truck) {
@@ -31,40 +37,61 @@ public class TruckService {
         return truckRepository.findTruckByLicenseplate(licensePlate);
     }
 
-    public String checkTruckEntry(String licensePlate) {
+    public Optional<Truck> checkTruckEntry(String licensePlate) {
         Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licensePlate);
 
-        if (truckOpt.isPresent()) {
-            Truck truck = truckOpt.get();
-            LocalDateTime now = LocalDateTime.now();
+        if (truckOpt.isEmpty()) {
+            return Optional.empty();
+        }
 
-            // Check if the truck has a valid appointment
-            boolean hasValidAppointment = truck.getAppointments().stream()
-                    .anyMatch(appointment -> {
-                        // Convert date and time fields to LocalDateTime
-                        LocalDateTime startDateTime = appointment.getArrivalWindow().getDate().toInstant()
-                                .atZone(ZoneId.systemDefault())
-                                .toLocalDateTime()
-                                .with(appointment.getArrivalWindow().getStartTime());
+        Truck truck = truckOpt.get();
+        LocalDateTime now = LocalDateTime.now();
 
-                        LocalDateTime endDateTime = appointment.getArrivalWindow().getDate().toInstant()
-                                .atZone(ZoneId.systemDefault())
-                                .toLocalDateTime()
-                                .with(appointment.getArrivalWindow().getEndTime());
+        boolean withinAppointmentWindow = truck.getAppointments().stream()
+                .anyMatch(appointment -> isWithinAppointmentWindow(
+                        appointment.getArrivalWindow().getDate(),
+                        appointment.getArrivalWindow().getStartTime(),
+                        appointment.getArrivalWindow().getEndTime(),
+                        now));
 
-                        return now.isAfter(startDateTime) && now.isBefore(endDateTime);
-                    });
-
-            // If valid appointment exists and truck is within the window, allow entry
-            if (hasValidAppointment) {
-                return "Gate opened for truck with license plate " + licensePlate + ". Proceed to weighbridge number: " + truck.getWbTicket().getWeighBridgeNumber();
-            } else {
-
-                fifoQueueService.addTruckToQueue(truck);
-                return "Truck with license plate " + licensePlate + " has been added to the FIFO queue as no valid appointment was found or it arrived outside its appointment window.";
-            }
+        if (withinAppointmentWindow) {
+            WeighBridgeTicket ticket = weighBridgeTicketService.createTicket(truck, 1L);
+            truck.setWbTicket(ticket);
+            return Optional.of(truck);
         } else {
-            return "No truck found with license plate " + licensePlate;
+            fifoQueueService.addTruckToQueue(truck);
+            return Optional.empty();
         }
     }
+
+    private boolean isWithinAppointmentWindow(Date date, LocalTime startTime, LocalTime endTime, LocalDateTime now) {
+        LocalDateTime startDateTime = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime()
+                .with(startTime);
+
+        LocalDateTime endDateTime = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime()
+                .with(endTime);
+
+        return now.isAfter(startDateTime) && now.isBefore(endDateTime);
+    }
+    public boolean isWithinArrivalWindow(Truck truck) {
+        LocalDateTime now = LocalDateTime.now();
+        return truck.getAppointments().stream()
+            .anyMatch(appointment -> isWithinAppointmentWindow(
+                appointment.getArrivalWindow().getDate(),
+                appointment.getArrivalWindow().getStartTime(),
+                appointment.getArrivalWindow().getEndTime(),
+                now));
+    }
+
+    public int getTrucksInFifoQueue() {
+    return fifoQueueService.getTrucksInFifoQueue();
+}
+
+public long countTrucksOnSite() {
+    return truckRepository.countByOnSiteTrue();
+}
 }

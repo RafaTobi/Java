@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Truck Entry Success</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Truck Entry Success</h1>
+        <p>Truck with license plate <span th:text="${truck.licenseplate}"></span> has entered the site.</p>
+        <p>Assigned Weighbridge Number: <span th:text="${truck.wbTicket.weighBridgeNumber}"></span></p>
+    </div>
+</body>
+</html>

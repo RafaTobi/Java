@@ -18,4 +18,8 @@ public class FifoQueue {
     public Queue<Truck> getQueue() {
         return queue;
     }
+
+    public int getSize() {
+        return queue.size();
+    }
 }

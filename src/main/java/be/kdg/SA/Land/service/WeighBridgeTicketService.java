@@ -1,3 +1,4 @@
+// src/main/java/be/kdg/SA/Land/service/WeighBridgeTicketService.java
 package be.kdg.SA.Land.service;
 
 import be.kdg.SA.Land.domain.Truck;
@@ -15,13 +16,13 @@ public class WeighBridgeTicketService {
     private final WeighBridgedTicketRepository ticketRepository;
     private final TruckRepository truckRepository;
 
-    public WeighBridgeTicketService(WeighBridgedTicketRepository ticketRepo, TruckRepository truckRepo) {
-        this.ticketRepository = ticketRepo;
-        this.truckRepository = truckRepo;
+    public WeighBridgeTicketService(WeighBridgedTicketRepository ticketRepository, TruckRepository truckRepository) {
+        this.ticketRepository = ticketRepository;
+        this.truckRepository = truckRepository;
     }
 
-    public WeighBridgeTicket arrivalWeighIn(String licencePlate, long weighBridgeNumber){
-        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licencePlate);
+    public WeighBridgeTicket arrivalWeighIn(String licensePlate, long weighBridgeNumber) {
+        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licensePlate);
         if (truckOpt.isEmpty()) return null;
 
         Truck truck = truckOpt.get();
@@ -30,6 +31,7 @@ public class WeighBridgeTicketService {
         ticket.setTruck(truck);
         ticket.setArrivalTime(LocalDateTime.now());
         ticket.setArrivalWeight(truck.getLaadvermogen());
+
         ticketRepository.save(ticket);
         truck.setWbTicket(ticket);
         truckRepository.save(truck);
@@ -37,9 +39,8 @@ public class WeighBridgeTicketService {
         return ticket;
     }
 
-    public WeighBridgeTicket departureWeighIn(String licencePlate) {
-
-        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licencePlate);
+    public WeighBridgeTicket departureWeighIn(String licensePlate) {
+        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licensePlate);
         if (truckOpt.isEmpty()) return null;
 
         Truck truck = truckOpt.get();
@@ -57,19 +58,19 @@ public class WeighBridgeTicketService {
         return ticket;
     }
 
-    public long assignWeighBridgeNumber(String licencePlate) {
-        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licencePlate);
+    public long assignWeighBridgeNumber(String licensePlate) {
+        Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licensePlate);
         if (truckOpt.isEmpty()) return -1;
 
         Truck truck = truckOpt.get();
-
         WeighBridgeTicket ticket = new WeighBridgeTicket();
+
         long weighBridgeNumber = generateWeighBridgeNumber();
         ticket.setWeighBridgeNumber(weighBridgeNumber);
         ticket.setTruck(truck);
         ticket.setArrivalTime(LocalDateTime.now());
-
         ticket.setArrivalWeight(truck.getLaadvermogen());
+
         ticketRepository.save(ticket);
         truck.setWbTicket(ticket);
         truckRepository.save(truck);
@@ -78,6 +79,23 @@ public class WeighBridgeTicketService {
     }
 
     private long generateWeighBridgeNumber() {
-          return new Random().nextLong();
+        return new Random().nextInt(100) + 1;
+    }
+
+    public WeighBridgeTicket createTicket(Truck truck, Long weighBridgeNumber) {
+        WeighBridgeTicket ticket = new WeighBridgeTicket();
+        ticket.setTruck(truck);
+        ticket.setWeighBridgeNumber(weighBridgeNumber);
+        ticket.setArrivalTime(LocalDateTime.now());
+        ticketRepository.save(ticket);
+        return ticket;
+    }
+
+
+
+    public WeighBridgeTicket updateTicketForDeparture(Truck truck, Long newWeighBridgeNumber) {
+        WeighBridgeTicket ticket = truck.getWbTicket();
+        ticket.setWeighBridgeNumber(newWeighBridgeNumber);
+        return ticket;
     }
 }

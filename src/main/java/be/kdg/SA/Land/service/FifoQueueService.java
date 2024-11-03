@@ -17,4 +17,7 @@ public class FifoQueueService {
     public FifoQueue getFifoQueue() {
         return fifoQueue;
     }
+    public int getTrucksInFifoQueue() {
+        return fifoQueue.getSize();
+    }
 }
