@@ -1,6 +1,6 @@
-package be.kdg.SA.Land.controller;
+package be.kdg.sa.land.controller;
 
-import be.kdg.SA.Land.service.FifoQueueService;
+import be.kdg.sa.land.service.FifoQueueService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

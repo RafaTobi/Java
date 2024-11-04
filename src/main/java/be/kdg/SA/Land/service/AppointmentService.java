@@ -1,14 +1,14 @@
-package be.kdg.SA.Land.service;
+package be.kdg.sa.land.service;
 
-import be.kdg.SA.Land.controller.dto.AppointmentDto;
-import be.kdg.SA.Land.domain.Appointment;
-import be.kdg.SA.Land.domain.ArrivalWindow;
-import be.kdg.SA.Land.domain.Resource;
-import be.kdg.SA.Land.domain.Supplier;
-import be.kdg.SA.Land.domain.Truck;
-import be.kdg.SA.Land.repository.AppointmentRepository;
-import be.kdg.SA.Land.repository.ArrivalWindowRepository;
-import be.kdg.SA.Land.repository.ResourceRepository;
+import be.kdg.sa.land.controller.dto.AppointmentDto;
+import be.kdg.sa.land.domain.Appointment;
+import be.kdg.sa.land.domain.ArrivalWindow;
+import be.kdg.sa.land.domain.Resource;
+import be.kdg.sa.land.domain.Supplier;
+import be.kdg.sa.land.domain.Truck;
+import be.kdg.sa.land.repository.AppointmentRepository;
+import be.kdg.sa.land.repository.ArrivalWindowRepository;
+import be.kdg.sa.land.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,26 +42,27 @@ public class AppointmentService {
     }
 
     @Transactional
-    public void createAppointment(AppointmentDto appointmentDto) {
-        Supplier supplier = supplierService.findSupplier(appointmentDto.getSupplier());
-        Truck truck = truckService.findTruck(appointmentDto.getTruck());
-        ArrivalWindow arrivalWindow = appointmentDto.getArrivalWindow();
-        Resource resource = appointmentDto.getResource();
+public void createAppointment(AppointmentDto appointmentDto) {
+    Supplier supplier = appointmentDto.getSupplier();
+    Truck truck = appointmentDto.getTruck();
+    ArrivalWindow arrivalWindow = appointmentDto.getArrivalWindow();
+    Resource resource = appointmentDto.getResource();
 
-        if (arrivalWindow.getId() == null) {
-            arrivalWindowRepository.save(arrivalWindow);
-        }
 
-        if (resource.getName() == null) {
-            resourceRepository.save(resource);
-        }
-
-        Appointment appointment = new Appointment(supplier, truck, resource, arrivalWindow);
-        appointmentRepository.save(appointment);
+    if (arrivalWindow.getId() == null) {
+        arrivalWindowRepository.save(arrivalWindow);
     }
 
+    if (resource.getName() == null) {
+        resourceRepository.save(resource);
+    }
+
+    Appointment appointment = new Appointment(supplier, truck, resource, arrivalWindow);
+    appointmentRepository.save(appointment);
+}
+
     public boolean isTruckScheduledForNow(Truck truck) {
-        LocalDateTime currentTime = LocalDateTime.now();
+        LocalTime currentTime = LocalTime.now();
         return appointmentRepository.existsByTruckAndArrivalWindowTime(truck, currentTime);
     }
 
@@ -80,20 +81,7 @@ public class AppointmentService {
         }
     }
 
-    public void logDepartureTime(String licensePlate, LocalDateTime departureTime) {
-        Optional<Truck> truckOpt = truckService.findTruckByLicenseplate(licensePlate);
-        if (truckOpt.isEmpty()) {
-            return;
-        }
-        Truck truck = truckOpt.get();
-        Optional<List<Appointment>> appointmentOpt = appointmentRepository.findAppointmentByTruck(truck);
-        if (appointmentOpt.isPresent() && !appointmentOpt.get().isEmpty()) {
-            Appointment appointment = appointmentOpt.get().get(0);
-            ArrivalWindow arrivalWindow = appointment.getArrivalWindow();
-            arrivalWindow.setEndTime(departureTime.toLocalTime());
-            arrivalWindowRepository.save(arrivalWindow);
-        }
-    }
+
 
     public boolean canScheduleTruck(LocalDateTime arrivalTime) {
         LocalTime startTime = LocalTime.of(8, 0);

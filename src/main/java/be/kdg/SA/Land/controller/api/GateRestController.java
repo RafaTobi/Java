@@ -1,8 +1,8 @@
-package be.kdg.SA.Land.controller.api;
+package be.kdg.sa.land.controller.api;
 
-import be.kdg.SA.Land.domain.Truck;
-import be.kdg.SA.Land.service.AppointmentService;
-import be.kdg.SA.Land.service.TruckService;
+import be.kdg.sa.land.domain.Truck;
+import be.kdg.sa.land.service.AppointmentService;
+import be.kdg.sa.land.service.TruckService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

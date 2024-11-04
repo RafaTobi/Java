@@ -1,7 +1,7 @@
-package be.kdg.SA.Land.domain;
+package be.kdg.sa.land.domain;
 
 import jakarta.persistence.*;
-import be.kdg.SA.Land.domain.enums.*;
+import be.kdg.sa.land.domain.enums.*;
 
 @Entity
 public class Resource {

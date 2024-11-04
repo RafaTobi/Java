@@ -1,7 +1,7 @@
-package be.kdg.SA.Land.repository;
+package be.kdg.sa.land.repository;
 
 
-import be.kdg.SA.Land.domain.ArrivalWindow;
+import be.kdg.sa.land.domain.ArrivalWindow;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

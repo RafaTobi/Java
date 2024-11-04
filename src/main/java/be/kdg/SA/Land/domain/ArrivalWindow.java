@@ -1,5 +1,5 @@
 // ArrivalWindow.java
-package be.kdg.SA.Land.domain;
+package be.kdg.sa.land.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

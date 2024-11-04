@@ -1,7 +1,7 @@
-package be.kdg.SA.Land.repository;
+package be.kdg.sa.land.repository;
 
-import be.kdg.SA.Land.domain.Appointment;
-import be.kdg.SA.Land.domain.Truck;
+import be.kdg.sa.land.domain.Appointment;
+import be.kdg.sa.land.domain.Truck;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,7 +19,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
     Optional<List<Appointment>> findAppointmentByTruck(Truck truck);
 
     @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END FROM Appointment a WHERE a.truck = :truck AND :currentTime BETWEEN a.arrivalWindow.startTime AND a.arrivalWindow.endTime")
-    boolean existsByTruckAndArrivalWindowTime(Truck truck, LocalDateTime currentTime);
+    boolean existsByTruckAndArrivalWindowTime(Truck truck, LocalTime currentTime);
 
     @Query("SELECT COUNT(a) FROM Appointment a WHERE " +
             "a.arrivalWindow.date = :arrivalDate AND " +

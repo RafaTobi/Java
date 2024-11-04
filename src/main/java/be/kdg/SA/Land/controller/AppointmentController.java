@@ -1,11 +1,11 @@
-package be.kdg.SA.Land.controller;
+package be.kdg.sa.land.controller;
 
-import be.kdg.SA.Land.controller.dto.AppointmentDto;
-import be.kdg.SA.Land.domain.ArrivalWindow;
-import be.kdg.SA.Land.domain.Resource;
-import be.kdg.SA.Land.domain.Supplier;
-import be.kdg.SA.Land.domain.Truck;
-import be.kdg.SA.Land.service.*;
+import be.kdg.sa.land.controller.dto.AppointmentDto;
+import be.kdg.sa.land.domain.ArrivalWindow;
+import be.kdg.sa.land.domain.Resource;
+import be.kdg.sa.land.domain.Supplier;
+import be.kdg.sa.land.domain.Truck;
+import be.kdg.sa.land.service.*;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +40,7 @@ public class AppointmentController {
     }
 
 
+
     @GetMapping("/add-appointment")
     public ModelAndView addAppointment() {
         ModelAndView mav = new ModelAndView();
@@ -50,43 +51,41 @@ public class AppointmentController {
     }
 
     @PostMapping("/add-appointment")
-    public String addAppointment(@ModelAttribute("Appointment") @Valid AppointmentDto appointmentDto, BindingResult errors, Model model){
-        if(errors.hasErrors()){
-            model.addAttribute("TimeSlots", arrivalWindowService.getAvailableTimeSlots());
-            return "AppointmentForm";
-        }
-
-        Supplier supplier;
-        Truck truck;
-        try {
-            supplier = supplierService.findSupplier(appointmentDto.getSupplier());
-            truck = truckService.findTruck(appointmentDto.getTruck());
-        } catch (IllegalArgumentException e) {
-
-            errors.rejectValue("supplier.name", "error.supplier", "Supplier does not exist in the database");
-            errors.rejectValue("truck.licenseplate", "error.truck", "Truck does not exist in the database");
-            model.addAttribute("TimeSlots", arrivalWindowService.getAvailableTimeSlots());
-            return "AppointmentForm";
-        }
-
-
-        ArrivalWindow arrivalWindow = arrivalWindowService.createArrivalWindow(
-                appointmentDto.getArrivalWindow().getDate(),
-                appointmentDto.getArrivalWindow().getStartTime()
-        );
-        appointmentDto.setArrivalWindow(arrivalWindow);
-        appointmentDto.setSupplier(supplier);
-
-        Resource resource = resourceService.findResource(appointmentDto.getResource());
-        appointmentDto.setResource(resource);
-
-
-        appointmentDto.setTruck(truck);
-
-        appointmentService.createAppointment(appointmentDto);
-
-        return "redirect:/appointments";
+public String addAppointment(@ModelAttribute("Appointment") @Valid AppointmentDto appointmentDto, BindingResult errors, Model model) {
+    if (errors.hasErrors()) {
+        model.addAttribute("TimeSlots", arrivalWindowService.getAvailableTimeSlots());
+        return "AppointmentForm";
     }
+
+    Supplier supplier;
+    Truck truck;
+    try {
+        supplier = supplierService.findSupplier(appointmentDto.getSupplier());
+        truck = truckService.findTruck(appointmentDto.getTruck());
+    } catch (IllegalArgumentException e) {
+        errors.rejectValue("supplier.name", "error.supplier", "Supplier does not exist in the database");
+        errors.rejectValue("truck.licenseplate", "error.truck", "Truck does not exist in the database");
+        model.addAttribute("TimeSlots", arrivalWindowService.getAvailableTimeSlots());
+        return "AppointmentForm";
+    }
+
+    ArrivalWindow arrivalWindow = arrivalWindowService.createArrivalWindow(
+            appointmentDto.getArrivalWindow().getDate(),
+            appointmentDto.getArrivalWindow().getStartTime()
+    );
+    appointmentDto.setArrivalWindow(arrivalWindow);
+    appointmentDto.setSupplier(supplier);
+
+    Resource resource = resourceService.findResource(appointmentDto.getResource());
+    appointmentDto.setResource(resource);
+
+    appointmentDto.setTruck(truck);
+
+    appointmentService.createAppointment(appointmentDto);
+
+    return "redirect:/appointments";
+}
+
 
 
 

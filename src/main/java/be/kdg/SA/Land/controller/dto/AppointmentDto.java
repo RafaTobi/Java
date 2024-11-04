@@ -1,10 +1,10 @@
 // AppointmentDto.java
-package be.kdg.SA.Land.controller.dto;
+package be.kdg.sa.land.controller.dto;
 
-import be.kdg.SA.Land.domain.ArrivalWindow;
-import be.kdg.SA.Land.domain.Resource;
-import be.kdg.SA.Land.domain.Supplier;
-import be.kdg.SA.Land.domain.Truck;
+import be.kdg.sa.land.domain.ArrivalWindow;
+import be.kdg.sa.land.domain.Resource;
+import be.kdg.sa.land.domain.Supplier;
+import be.kdg.sa.land.domain.Truck;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
@@ -19,6 +19,7 @@ public class AppointmentDto {
     private Resource resource;
     @NotNull
     private ArrivalWindow arrivalWindow;
+
 
     // Getters and setters
     public Supplier getSupplier() {
@@ -60,4 +61,6 @@ public class AppointmentDto {
     public void setAppointmentId(UUID appointmentId) {
         this.appointmentId = appointmentId;
     }
+
+
 }

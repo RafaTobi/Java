@@ -1,8 +1,8 @@
 // SupplierService.java
-package be.kdg.SA.Land.service;
+package be.kdg.sa.land.service;
 
-import be.kdg.SA.Land.domain.Supplier;
-import be.kdg.SA.Land.repository.SupplierRepository;
+import be.kdg.sa.land.domain.Supplier;
+import be.kdg.sa.land.repository.SupplierRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

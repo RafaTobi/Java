@@ -1,4 +1,4 @@
-package be.kdg.SA.Land.controller.dto;
+package be.kdg.sa.land.controller.dto;
 
 import java.time.LocalDateTime;
 

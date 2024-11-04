@@ -15,10 +15,10 @@ VALUES (6, 'Supplier 6');
 
 -- Inserting test data for ArrivalWindow
 INSERT INTO ARRIVAL_WINDOW (id, date, start_time, end_time)
-VALUES ('8bb66f8f-7d3e-4283-8abd-ad5dae3fb90c', '2024-10-20', '08:00:00', '09:00:00');
+VALUES ('8bb66f8f-7d3e-4283-8abd-ad5dae3fb90c', '2024-11-04', '03:00:00', '04:00:00');
 
 INSERT INTO ARRIVAL_WINDOW (id, date, start_time, end_time)
-VALUES ('94b66f8f-8a3e-1283-9aef-ed3dae3fb94f', '2024-10-21', '10:00:00', '11:00:00');
+VALUES ('94b66f8f-8a3e-1283-9aef-ed3dae3fb94f', '2024-11-04', '03:00:00', '04:00:00');
 
 INSERT INTO ARRIVAL_WINDOW (id, date, start_time, end_time)
 VALUES ('96a66f8e-6f3e-4ab3-8e8d-d5dae3fb76bc', '2024-10-22', '14:00:00', '15:00:00');

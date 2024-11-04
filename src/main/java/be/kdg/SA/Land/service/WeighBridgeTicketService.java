@@ -1,9 +1,10 @@
-package be.kdg.SA.Land.service;
+package be.kdg.sa.land.service;
 
-import be.kdg.SA.Land.domain.Truck;
-import be.kdg.SA.Land.domain.WeighBridgeTicket;
-import be.kdg.SA.Land.repository.TruckRepository;
-import be.kdg.SA.Land.repository.WeighBridgeTicketRepository;
+import be.kdg.sa.land.domain.Truck;
+import be.kdg.sa.land.domain.WeighBridgeTicket;
+import be.kdg.sa.land.repository.TruckRepository;
+import be.kdg.sa.land.repository.WeighBridgeTicketRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -12,12 +13,13 @@ import java.util.Random;
 
 @Service
 public class WeighBridgeTicketService {
-    private final WeighBridgeTicketRepository ticketRepository;
     private final TruckRepository truckRepository;
+    private final WeighBridgeTicketRepository ticketRepository;
 
-    public WeighBridgeTicketService(WeighBridgeTicketRepository ticketRepository, TruckRepository truckRepository) {
-        this.ticketRepository = ticketRepository;
+    @Autowired
+    public WeighBridgeTicketService(TruckRepository truckRepository, WeighBridgeTicketRepository ticketRepository) {
         this.truckRepository = truckRepository;
+        this.ticketRepository = ticketRepository;
     }
 
     public void logTruckWeight(long weighBridgeNumber, String licensePlate, double weight, boolean isArrival) {
@@ -26,9 +28,13 @@ public class WeighBridgeTicketService {
             return;
         }
         Truck truck = truckOpt.get();
-        WeighBridgeTicket ticket = new WeighBridgeTicket();
-        ticket.setWeighBridgeNumber(weighBridgeNumber);
-        ticket.setTruck(truck);
+        WeighBridgeTicket ticket = truck.getWbTicket();
+        if (ticket == null) {
+            ticket = new WeighBridgeTicket();
+            ticket.setTruck(truck);
+            ticket.setWeighBridgeNumber(weighBridgeNumber);
+            truck.setWbTicket(ticket);
+        }
         if (isArrival) {
             ticket.setArrivalWeight(weight);
             ticket.setArrivalTime(LocalDateTime.now());
@@ -40,6 +46,15 @@ public class WeighBridgeTicketService {
         ticketRepository.save(ticket);
     }
 
+    public void logTruckDeparture(Truck truck, double departureWeight) {
+        WeighBridgeTicket ticket = truck.getWbTicket();
+        if (ticket != null) {
+            ticket.setDepartureWeight(departureWeight);
+            ticket.setDepartureTime(LocalDateTime.now());
+            ticket.setNetWeight(ticket.getArrivalWeight() - departureWeight);
+            ticketRepository.save(ticket);
+        }
+    }
     public long assignWeighBridgeNumber(String licensePlate) {
         Optional<Truck> truckOpt = truckRepository.findTruckByLicenseplate(licensePlate);
         if (truckOpt.isEmpty()) return -1;
@@ -60,7 +75,7 @@ public class WeighBridgeTicketService {
         return weighBridgeNumber;
     }
 
-    private long generateWeighBridgeNumber() {
+    public long generateWeighBridgeNumber() {
         return new Random().nextInt(100) + 1;
     }
 

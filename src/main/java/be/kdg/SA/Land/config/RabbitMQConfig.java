@@ -1,4 +1,4 @@
-package be.kdg.SA.Land.config;
+package be.kdg.sa.land.config;
 
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

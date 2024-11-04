@@ -1,7 +1,7 @@
-package be.kdg.SA.Land.repository;
+package be.kdg.sa.land.repository;
 
-import be.kdg.SA.Land.domain.Resource;
-import be.kdg.SA.Land.domain.enums.ResourceType;
+import be.kdg.sa.land.domain.Resource;
+import be.kdg.sa.land.domain.enums.ResourceType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

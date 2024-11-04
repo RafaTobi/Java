@@ -1,4 +1,4 @@
-package be.kdg.SA.Land.domain;
+package be.kdg.sa.land.domain;
 
 import jakarta.persistence.*;
 

@@ -1,7 +1,7 @@
-package be.kdg.SA.Land.controller.api;
+package be.kdg.sa.land.controller.api;
 
-import be.kdg.SA.Land.domain.WeighBridgeTicket;
-import be.kdg.SA.Land.service.WeighBridgeTicketService;
+import be.kdg.sa.land.domain.WeighBridgeTicket;
+import be.kdg.sa.land.service.WeighBridgeTicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

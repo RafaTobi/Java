@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weighbridge Ticket Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Krystal Distributie Group</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/arrival-departure-log}">Arrival and Departure Log</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1>Weighbridge Ticket Details</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Truck License Plate: <span th:text="${truck.licenseplate}"></span></h5>
+            <p class="card-text">Weighbridge Number: <span th:text="${ticket.weighBridgeNumber}"></span></p>
+            <p class="card-text">Arrival Weight: <span th:text="${ticket.arrivalWeight}"></span> kg</p>
+            <p class="card-text">Departure Weight: <span th:text="${ticket.departureWeight}"></span> kg</p>
+            <p class="card-text">Net Weight: <span th:text="${ticket.netWeight}"></span> kg</p>
+            <p class="card-text">Arrival Time: <span th:text="${ticket.arrivalTime}"></span></p>
+            <p class="card-text">Departure Time: <span th:text="${ticket.departureTime}"></span></p>
+        </div>
+    </div>
+    <a th:href="@{/}" class="btn btn-primary mt-4">Back to Main Operations</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

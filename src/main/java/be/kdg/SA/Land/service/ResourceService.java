@@ -1,7 +1,7 @@
-package be.kdg.SA.Land.service;
+package be.kdg.sa.land.service;
 
-import be.kdg.SA.Land.domain.Resource;
-import be.kdg.SA.Land.repository.ResourceRepository;
+import be.kdg.sa.land.domain.Resource;
+import be.kdg.sa.land.repository.ResourceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -28,9 +28,7 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/fifo-queue}">FIFO Queue</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/weighbridge}">Weighbridge Management</a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -39,6 +37,7 @@
         <h1 class="mt-5">Truck Entry Result</h1>
         <p class="mt-3" th:text="${message}"></p>
         <a th:href="@{/truck-entry}" class="btn btn-secondary mt-3">Back</a>
+        <a th:href="@{/fifo-queue}" class="btn btn-primary mt-3">View FIFO Queue</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

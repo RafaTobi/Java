@@ -1,10 +1,10 @@
-package be.kdg.SA.Land.service;
+package be.kdg.sa.land.service;
 
-import be.kdg.SA.Land.controller.dto.WeighingOperationDto;
-import be.kdg.SA.Land.domain.Truck;
-import be.kdg.SA.Land.domain.WeighBridgeTicket;
-import be.kdg.SA.Land.repository.TruckRepository;
-import be.kdg.SA.Land.repository.WeighBridgeTicketRepository;
+import be.kdg.sa.land.controller.dto.WeighingOperationDto;
+import be.kdg.sa.land.domain.Truck;
+import be.kdg.sa.land.domain.WeighBridgeTicket;
+import be.kdg.sa.land.repository.TruckRepository;
+import be.kdg.sa.land.repository.WeighBridgeTicketRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

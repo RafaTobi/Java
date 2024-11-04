@@ -1,7 +1,7 @@
-package be.kdg.SA.Land.controller.api;
+package be.kdg.sa.land.controller.api;
 
-import be.kdg.SA.Land.controller.dto.WeighingOperationDto;
-import be.kdg.SA.Land.service.WeighingOperationService;
+import be.kdg.sa.land.controller.dto.WeighingOperationDto;
+import be.kdg.sa.land.service.WeighingOperationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

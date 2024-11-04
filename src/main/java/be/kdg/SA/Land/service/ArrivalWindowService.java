@@ -1,7 +1,7 @@
-package be.kdg.SA.Land.service;
+package be.kdg.sa.land.service;
 
-import be.kdg.SA.Land.domain.ArrivalWindow;
-import be.kdg.SA.Land.repository.ArrivalWindowRepository;
+import be.kdg.sa.land.domain.ArrivalWindow;
+import be.kdg.sa.land.repository.ArrivalWindowRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
@@ -19,15 +19,15 @@ public class ArrivalWindowService {
     public List<ArrivalWindow> getAvailableTimeSlots() {
         List<ArrivalWindow> timeSlots = new ArrayList<>();
 
-        LocalTime startOfBusiness = LocalTime.of(8, 0);  // Business opens at 8:00 AM
-        LocalTime endOfBusiness = LocalTime.of(18, 0);   // Business closes at 6:00 PM
+        LocalTime startOfBusiness = LocalTime.of(6, 0);
+        LocalTime endOfBusiness = LocalTime.of(20, 0);
 
         LocalTime currentSlot = startOfBusiness;
 
         while (currentSlot.isBefore(endOfBusiness)) {
             ArrivalWindow slot = ArrivalWindow.createOneHourSlot(currentSlot);
             timeSlots.add(slot);
-            currentSlot = currentSlot.plusHours(1);  // Move to the next 1-hour slot
+            currentSlot = currentSlot.plusHours(1);
         }
 
         return timeSlots;
@@ -35,7 +35,7 @@ public class ArrivalWindowService {
 
 
     public ArrivalWindow createArrivalWindow(Date date, LocalTime startTime) {
-        LocalTime endTime = startTime.plusHours(1); // Assuming the slot is always 1 hour
+        LocalTime endTime = startTime.plusHours(1);
         ArrivalWindow arrivalWindow = new ArrivalWindow(startTime, endTime);
         arrivalWindow.setDate(date);
 

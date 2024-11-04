@@ -1,5 +1,5 @@
 // Appointment.java
-package be.kdg.SA.Land.domain;
+package be.kdg.sa.land.domain;
 
 import jakarta.persistence.*;
 
@@ -24,12 +24,15 @@ public class Appointment {
     @JoinColumn(name = "arrival_window_id")
     private ArrivalWindow arrivalWindow;
 
+
+
     public Appointment(Supplier supplier, Truck truck, Resource resource, ArrivalWindow arrivalWindow) {
         this.appointmentId = UUID.randomUUID();
         this.supplier = supplier;
         this.truck = truck;
         this.resource = resource;
         this.arrivalWindow = arrivalWindow;
+
     }
     protected Appointment() {} //voor jpa
 
@@ -73,4 +76,6 @@ public class Appointment {
     public void setArrivalWindow(ArrivalWindow arrivalWindow) {
         this.arrivalWindow = arrivalWindow;
     }
+
+
 }

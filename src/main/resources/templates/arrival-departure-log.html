@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Truck Entry</title>
+    <title>Arrival and Departure Log</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -28,25 +28,40 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/fifo-queue}">FIFO Queue</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/trucks-on-site}">Trucks on Site</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/arrival-departure-log}">Arrival and Departure Log</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/weighbridge}">Weighbridge Management</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
     <div class="container">
-        <h1 class="mt-5">Truck Entry</h1>
-        <p>Check if you have an appointment by entering your truck's license plate in the form.</p>
-        <form th:action="@{/truck-entry}" method="post" class="mt-3">
-            <div class="form-group">
-                <label for="licensePlate">License Plate:</label>
-                <input type="text" id="licensePlate" name="licensePlate" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="weight">Weight</label>
-                <input type="number" class="form-control" id="weight" name="weight" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <h1 class="mt-5">Arrival and Departure Log</h1>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>License Plate</th>
+                    <th>Planned Arrival</th>
+                    <th>Actual Arrival</th>
+                    <th>Departure</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="log : ${logs}">
+                    <td th:text="${log.licenseplate}"></td>
+                    <td th:text="${log.plannedArrival}"></td>
+                    <td th:text="${log.actualArrival}"></td>
+                    <td th:text="${log.departure}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{index}" class="btn btn-primary mt-3">Back to Dashboard</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

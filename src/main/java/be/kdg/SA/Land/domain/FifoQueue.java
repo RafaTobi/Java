@@ -1,5 +1,5 @@
 
-package be.kdg.SA.Land.domain;
+package be.kdg.sa.land.domain;
 
 import java.util.LinkedList;
 import java.util.Queue;

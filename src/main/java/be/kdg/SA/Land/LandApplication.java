@@ -1,4 +1,4 @@
-package be.kdg.SA.Land;
+package be.kdg.sa.land;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

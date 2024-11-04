@@ -1,8 +1,8 @@
 // FifoQueueService.java
-package be.kdg.SA.Land.service;
+package be.kdg.sa.land.service;
 
-import be.kdg.SA.Land.domain.FifoQueue;
-import be.kdg.SA.Land.domain.Truck;
+import be.kdg.sa.land.domain.FifoQueue;
+import be.kdg.sa.land.domain.Truck;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package be.kdg.SA.Land.controller.dto;
+package be.kdg.sa.land.controller.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -8,6 +8,10 @@ public class PdtMessageDto {
     private double amount;
     private LocalDateTime timeOfDelivery;
     private String materialType;
+
+    public PdtMessageDto(String licenseplate, long weighBridgeNumber) {
+
+    }
 
 
     public UUID getSupplierUuid() {
