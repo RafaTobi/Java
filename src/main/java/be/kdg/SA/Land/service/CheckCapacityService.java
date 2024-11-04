@@ -40,9 +40,8 @@ public class CheckCapacityService {
 
             return response.getBody() != null && response.getBody();
         } catch (Exception e) {
-            // Log the error (depending on your logging mechanism)
             System.err.println("Error during warehouse capacity check: " + e.getMessage());
-            return false; // Assume capacity is not available in case of an error
+            return false;
         }
     }
 }
