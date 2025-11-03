@@ -102,4 +102,7 @@ public void createAppointment(AppointmentDto appointmentDto) {
     }
 
 
+    public Appointment getAppointmentByLicensePlate(String licensePlate) {
+        return appointmentRepository.findAppointmentByTruckLicensePlate(licensePlate, LocalTime.now());
+    }
 }

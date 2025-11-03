@@ -28,4 +28,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
     long countAppointmentsWithinDateAndTime(@Param("arrivalDate") LocalDate arrivalDate,
                                             @Param("startTime") LocalTime startTime,
                                             @Param("endTime") LocalTime endTime);
+
+    @Query("SELECT a FROM Appointment a WHERE a.truck.licenseplate = :licensePlate AND :now BETWEEN a.arrivalWindow.startTime AND a.arrivalWindow.endTime")
+    Appointment findAppointmentByTruckLicensePlate(String licensePlate, LocalTime now);
 }

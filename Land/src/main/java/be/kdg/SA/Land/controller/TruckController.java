@@ -2,6 +2,7 @@
 package be.kdg.sa.land.controller;
 
 import be.kdg.sa.land.controller.dto.PdtMessageDto;
+import be.kdg.sa.land.domain.Appointment;
 import be.kdg.sa.land.domain.Truck;
 import be.kdg.sa.land.service.*;
 import be.kdg.sa.land.controller.sender.PayloadDeliveryTicketSender;
@@ -50,7 +51,8 @@ public class TruckController {
                 // Here we use the actual weight from the form
                 weighBridgeTicketService.logTruckWeight(weighBridgeNumber, licensePlate, weight, true);
 
-                PdtMessageDto message = new PdtMessageDto(truck.getLicenseplate(), weighBridgeNumber);
+                Appointment appointment = appointmentService.getAppointmentByLicensePlate(licensePlate);
+                PdtMessageDto message = new PdtMessageDto(appointment.getSupplier().getId(), weight, LocalDateTime.now(), appointment.getResource().getName().name());
                 try {
                     payloadDeliveryTicketSender.sendPayloadDeliveryTicketMessage(message);
                 } catch (JsonProcessingException e) {

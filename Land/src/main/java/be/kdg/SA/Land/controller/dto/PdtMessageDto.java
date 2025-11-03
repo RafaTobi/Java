@@ -1,5 +1,7 @@
 package be.kdg.sa.land.controller.dto;
 
+import be.kdg.sa.land.domain.enums.ResourceType;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -9,10 +11,12 @@ public class PdtMessageDto {
     private LocalDateTime timeOfDelivery;
     private String materialType;
 
-    public PdtMessageDto(String licenseplate, long weighBridgeNumber) {
-
+    public PdtMessageDto(UUID supplierUuid, double amount, LocalDateTime timeOfDelivery, String materialType) {
+        this.supplierUuid = supplierUuid;
+        this.amount = amount;
+        this.timeOfDelivery = timeOfDelivery;
+        this.materialType = materialType;
     }
-
 
     public UUID getSupplierUuid() {
         return supplierUuid;

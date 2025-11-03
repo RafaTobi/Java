@@ -1,21 +1,21 @@
 -- src/main/resources/sql/data.sql
 -- Inserting test data for Supplier
 INSERT INTO SUPPLIER (id, name)
-VALUES (1, 'Supplier 1');
+VALUES ('9a53db66-573a-462a-bb1e-a576d6b81549', 'Supplier 1');
 INSERT INTO SUPPLIER (id, name)
-VALUES (2, 'Supplier 2');
+VALUES ('cf74b424-2578-41d0-a159-8bbf08f63c79', 'Supplier 2');
 INSERT INTO SUPPLIER (id, name)
-VALUES (3, 'Supplier 3');
+VALUES ('fa8f7ef0-c852-4b2b-a509-d408f503c502', 'Supplier 3');
 INSERT INTO SUPPLIER (id, name)
-VALUES (4, 'Supplier 4');
+VALUES ('e54c9f69-4003-43c2-84df-62af55832005', 'Supplier 4');
 INSERT INTO SUPPLIER (id, name)
-VALUES (5, 'Supplier 5');
+VALUES ('11f297b3-df4d-4dbd-a8d9-610b11564d7b', 'Supplier 5');
 INSERT INTO SUPPLIER (id, name)
-VALUES (6, 'Supplier 6');
+VALUES ('0b2cdc63-0cca-4b62-97a0-4e1f2c207639', 'Supplier 6');
 
 -- Inserting test data for ArrivalWindow
 INSERT INTO ARRIVAL_WINDOW (id, date, start_time, end_time)
-VALUES ('8bb66f8f-7d3e-4283-8abd-ad5dae3fb90c', '2024-11-04', '03:00:00', '04:00:00');
+VALUES ('8bb66f8f-7d3e-4283-8abd-ad5dae3fb90c', '2024-11-04', '00:00:00', '01:00:00');
 
 INSERT INTO ARRIVAL_WINDOW (id, date, start_time, end_time)
 VALUES ('94b66f8f-8a3e-1283-9aef-ed3dae3fb94f', '2024-11-04', '03:00:00', '04:00:00');
@@ -61,11 +61,11 @@ VALUES ('c3c56e8f-9b7c-489f-bf9f-14cde4fb56cf', '5-MNO-456', 90, false);
 
 -- Inserting test data for Appointment
 INSERT INTO APPOINTMENT (appointment_id, supplier_id, arrival_window_id,resource_name, truck_id)
-VALUES (gen_random_uuid(), 1, '8bb66f8f-7d3e-4283-8abd-ad5dae3fb90c', 'Gips', '81d36e8e-8d4c-478e-bf8f-12dce4fb34ac');
+VALUES (gen_random_uuid(), '9a53db66-573a-462a-bb1e-a576d6b81549', '8bb66f8f-7d3e-4283-8abd-ad5dae3fb90c', 'Gips', '81d36e8e-8d4c-478e-bf8f-12dce4fb34ac');
 -- Inserting additional test data for Appointment
 INSERT INTO APPOINTMENT (appointment_id, supplier_id, arrival_window_id, resource_name, truck_id)
-VALUES (gen_random_uuid(), 2, '94b66f8f-8a3e-1283-9aef-ed3dae3fb94f', 'IjzerErts', '92b46e8f-9a6b-489e-af9f-13bce4fb45bd');
+VALUES (gen_random_uuid(), 'cf74b424-2578-41d0-a159-8bbf08f63c79', '94b66f8f-8a3e-1283-9aef-ed3dae3fb94f', 'IjzerErts', '92b46e8f-9a6b-489e-af9f-13bce4fb45bd');
 INSERT INTO APPOINTMENT (appointment_id, supplier_id, arrival_window_id, resource_name, truck_id)
-VALUES (gen_random_uuid(), 3, '96a66f8e-6f3e-4ab3-8e8d-d5dae3fb76bc', 'Cement', 'a1d36e8e-8d4c-478e-bf8f-12dce4fb34ad');
+VALUES (gen_random_uuid(), 'fa8f7ef0-c852-4b2b-a509-d408f503c502', '96a66f8e-6f3e-4ab3-8e8d-d5dae3fb76bc', 'Cement', 'a1d36e8e-8d4c-478e-bf8f-12dce4fb34ad');
 INSERT INTO APPOINTMENT (appointment_id, supplier_id, arrival_window_id, resource_name, truck_id)
-VALUES (gen_random_uuid(), 4, 'd4e66f8f-7e3e-4283-8bcd-ad5dae3fb91d', 'Petcoke', 'c3c56e8f-9b7c-489f-bf9f-14cde4fb56cf');
+VALUES (gen_random_uuid(), 'e54c9f69-4003-43c2-84df-62af55832005', 'd4e66f8f-7e3e-4283-8bcd-ad5dae3fb91d', 'Petcoke', 'c3c56e8f-9b7c-489f-bf9f-14cde4fb56cf');

@@ -17,7 +17,7 @@ public class PayloadDeliveryTicketSender {
     }
 
     @PostMapping("/pdt/create")
-    public void sendPayloadDeliveryTicketMessage(@RequestBody PdtMessageDto pdtMessageDto) throws JsonProcessingException {
+    public void sendPayloadDeliveryTicketMessage(PdtMessageDto pdtMessageDto) throws JsonProcessingException {
         rabbitTemplate.convertAndSend(RabbitTopology.PDT_EXCHANGE, "pdt.create", pdtMessageDto);
     }
 }
