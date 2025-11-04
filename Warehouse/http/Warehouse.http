@@ -1,0 +1,11 @@
+### Opvragen totale opslag grondstof
+GET http://localhost:8081/api/warehouses/material/1/storage
+Content-Type: application/json
+
+### opvragen warehouse
+GET http://localhost:8081/api/warehouses/0/storage
+Content-Type: application/json
+
+### Opvragen of er capacity is voor levering (Wordt opgeroepen via Land)
+GET http://localhost:8081/api/warehouses/storage/check/9a53db66-573a-462a-bb1e-a576d6b81549?materialType=Cement
+Content-Type: application/json

@@ -1,0 +1,10 @@
+### Uitrekenen invoice
+POST http://localhost:8081/api/invoices/generate
+
+### Uitrekenen daily commissie (op aanvraag)
+GET http://localhost:8081/api/invoices/commission/24fb6602-9b59-474c-a46c-820a1b50adab
+Content-Type: application/json
+
+### GET invoices voor supplier voor dag
+GET http://localhost:8081/api/invoices/aa13794c-d363-4aa6-8370-529af93ee1e5?date=2024-06-24
+Content-Type: application/json

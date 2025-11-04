@@ -1,0 +1,5 @@
+### opvragen warehouse dat bepaald materials housed
+GET http://localhost:8081/api/warehouses/material/5/storage
+
+### Aanpassen storage cost
+PUT http://localhost:8081/api/materials/1/storage-cost?storageCost=7

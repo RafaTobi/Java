@@ -1,0 +1,47 @@
+### opvragen POs op basis van status
+GET http://localhost:8081/api/purchaseorders/false/orderstatus
+
+### Aanmaken van PO
+POST http://localhost:8081/api/purchaseorders
+Content-Type: application/json
+
+{
+  "poNumber": "PO1234567",
+  "referenceUuid": "550e8400-e29b-41d4-a716-446655440001",
+  "customerParty": {
+    "uuid": "ddfd3fa6-07d1-4f0f-80f2-d080615c477a",
+    "name": "Joske Vermeulen",
+    "address": "Trammesantlei 122, Schoten, Belgium"
+  },
+  "sellerParty": {
+    "uuid": "24fb6602-9b59-474c-a46c-820a1b50adab",
+    "name": "Third supplier s the charm",
+    "address": "Onbekend"
+  },
+  "vesselNumber": "VSL7891011",
+  "orderLines": [
+    {
+      "materialType": "Petcoke",
+      "quantity": 100,
+      "uom": "kt"
+    },
+    {
+      "materialType": "Slak",
+      "quantity": 50,
+      "uom": "kt"
+    }
+  ]
+}
+
+### ontvangen Po request
+POST http://localhost:8081/api/purchaseorders/fulfill
+Content-Type: application/json
+
+{
+  "poReference": "550e8400-e29b-41d4-a716-446655440000",
+  "vesselNumber": "VSL7890"
+}
+
+### opvragen po
+GET http://localhost:8081/api/purchaseorders/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
